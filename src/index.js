@@ -1,8 +1,9 @@
 import './style.css';
+
 import { home } from './home'
 
 
 (() => {
-    console.log('lol')
+    //console.log('lol')
     home();
 })();

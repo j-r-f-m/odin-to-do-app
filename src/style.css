@@ -52,10 +52,28 @@ table {
 /* --------------------------------------------------------- */
 
 /* ---------------------------- style --------------------------- */
-.sidebar-container, .header-container {
+.sidebar-container, .heading-container, .prj-nav-con {
 	border: 1px solid purple;
 }
 
+.heading-container, .create-taskBtn {
+	width: 10rem;
+	padding: 0.5rem 0 0.5rem 0;
+	margin: 1rem;
+}
+
+.heading-container {
+	margin-top: 5rem;
+}
+
+.prj-nav-con {
+	margin-top: 3rem;
+	width: 10rem;
+}
+
+.heading-project, .icon-chevron {
+	padding: 0.5rem 0 0.5rem 0;
+}
 
 
 /* ----------------------------- layout ------------------ */
@@ -67,16 +85,19 @@ table {
 }
 
 .sidebar-container {
-	display: grid;
-	grid-template-columns: repeat(12, [col-start]1fr) ;
-	grid-template-rows: repeat(12, [row-start] 1fr) ;
-
-	grid-column: 1 / 5;
+	grid-column: 1 / 3;
 	grid-row: 1 / 13;
+
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+
+	min-width: 15rem;
 }
 
-.header-container {
-	grid-column: 4 / 10;
+.heading-container {
+	grid-column: 3 / 11;
 	grid-row: 2 / 3; 
 
 	display: flex;
@@ -84,15 +105,23 @@ table {
 	align-items: center;
 }
 
-.create-task {
+.create-taskBtn {
 	grid-column: 4 / 10;
 	grid-row: 3 / 4; 
 }
+
+.prj-nav-con {
+	display: flex;
+}
+
+.icon-chevron {
+	height: 1rem;
+	margin-left: 1rem;
+}
+
 /* -------------------------------------------------------- */
 
 /* ------------------------- text --------------------------- */
-.header-sidebar {
-	text-align: center;
+body {
 	font-family: Roboto;
-	font-weight: 700;
 }

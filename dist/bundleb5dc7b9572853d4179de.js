@@ -20,8 +20,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* -----------------RESET----------------------------- */\n/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed, \nfigure, figcaption, footer, header, hgroup, \nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, \nfooter, header, hgroup, menu, nav, section {\n\tdisplay: block;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n/* --------------------------------------------------------- */\n\n/* ---------------------------- style --------------------------- */\nh1 {\n\tcolor: red;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA,wDAAwD;AACxD;;;CAGC;;AAED;;;;;;;;;;;;;CAaC,SAAS;CACT,UAAU;CACV,SAAS;CACT,eAAe;CACf,aAAa;CACb,wBAAwB;AACzB;AACA,gDAAgD;AAChD;;CAEC,cAAc;AACf;AACA;CACC,cAAc;AACf;AACA;CACC,gBAAgB;AACjB;AACA;CACC,YAAY;AACb;AACA;;CAEC,WAAW;CACX,aAAa;AACd;AACA;CACC,yBAAyB;CACzB,iBAAiB;AAClB;AACA,8DAA8D;;AAE9D,mEAAmE;AACnE;CACC,UAAU;AACX","sourcesContent":["/* -----------------RESET----------------------------- */\n/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed, \nfigure, figcaption, footer, header, hgroup, \nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, \nfooter, header, hgroup, menu, nav, section {\n\tdisplay: block;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n/* --------------------------------------------------------- */\n\n/* ---------------------------- style --------------------------- */\nh1 {\n\tcolor: red;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* -----------------RESET----------------------------- */\n/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed, \nfigure, figcaption, footer, header, hgroup, \nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, \nfooter, header, hgroup, menu, nav, section {\n\tdisplay: block;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n/* --------------------------------------------------------- */\n\n/* ---------------------------- style --------------------------- */\n.sidebar-container, .heading-container, .prj-nav-con {\n\tborder: 1px solid purple;\n}\n\n.heading-container, .create-taskBtn {\n\twidth: 10rem;\n\tpadding: 0.5rem 0 0.5rem 0;\n\tmargin: 1rem;\n}\n\n.heading-container {\n\tmargin-top: 5rem;\n}\n\n.prj-nav-con {\n\tmargin-top: 3rem;\n\twidth: 10rem;\n}\n\n.heading-project {\n\tpadding: 0.5rem 0 0.5rem 0;\n}\n\n\n\n/* ----------------------------- layout ------------------ */\n#content {\n\theight: 100vh;\n\tdisplay: grid;\n\tgrid-template-columns: repeat(12, [col-start]1fr) ;\n\tgrid-template-rows: repeat(12, [row-start] 1fr) ;\n}\n\n.sidebar-container {\n\tgrid-column: 1 / 3;\n\tgrid-row: 1 / 13;\n\n\tdisplay: flex;\n\tflex-direction: column;\n\tjustify-items: center;\n\talign-items: center;\n\n\tmin-width: 15rem;\n}\n\n.heading-container {\n\tgrid-column: 3 / 11;\n\tgrid-row: 2 / 3; \n\n\tdisplay: flex;\n\tjustify-content: center;\n\talign-items: center;\n\n\n}\n\n.create-taskBtn {\n\tgrid-column: 4 / 10;\n\tgrid-row: 3 / 4; \n}\n/* -------------------------------------------------------- */\n\n/* ------------------------- text --------------------------- */\nbody {\n\tfont-family: Roboto;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AACA,wDAAwD;AACxD;;;CAGC;;AAED;;;;;;;;;;;;;CAaC,SAAS;;CAET,UAAU;CACV,SAAS;CACT,eAAe;CACf,aAAa;CACb,wBAAwB;AACzB;AACA,gDAAgD;AAChD;;CAEC,cAAc;AACf;AACA;CACC,cAAc;AACf;AACA;CACC,gBAAgB;AACjB;AACA;CACC,YAAY;AACb;AACA;;CAEC,WAAW;CACX,aAAa;AACd;AACA;CACC,yBAAyB;CACzB,iBAAiB;AAClB;AACA,8DAA8D;;AAE9D,mEAAmE;AACnE;CACC,wBAAwB;AACzB;;AAEA;CACC,YAAY;CACZ,0BAA0B;CAC1B,YAAY;AACb;;AAEA;CACC,gBAAgB;AACjB;;AAEA;CACC,gBAAgB;CAChB,YAAY;AACb;;AAEA;CACC,0BAA0B;AAC3B;;;;AAIA,4DAA4D;AAC5D;CACC,aAAa;CACb,aAAa;CACb,kDAAkD;CAClD,gDAAgD;AACjD;;AAEA;CACC,kBAAkB;CAClB,gBAAgB;;CAEhB,aAAa;CACb,sBAAsB;CACtB,qBAAqB;CACrB,mBAAmB;;CAEnB,gBAAgB;AACjB;;AAEA;CACC,mBAAmB;CACnB,eAAe;;CAEf,aAAa;CACb,uBAAuB;CACvB,mBAAmB;;;AAGpB;;AAEA;CACC,mBAAmB;CACnB,eAAe;AAChB;AACA,6DAA6D;;AAE7D,+DAA+D;AAC/D;CACC,mBAAmB;AACpB","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap\");\n/* -----------------RESET----------------------------- */\n/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed, \nfigure, figcaption, footer, header, hgroup, \nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, \nfooter, header, hgroup, menu, nav, section {\n\tdisplay: block;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n/* --------------------------------------------------------- */\n\n/* ---------------------------- style --------------------------- */\n.sidebar-container, .heading-container, .prj-nav-con {\n\tborder: 1px solid purple;\n}\n\n.heading-container, .create-taskBtn {\n\twidth: 10rem;\n\tpadding: 0.5rem 0 0.5rem 0;\n\tmargin: 1rem;\n}\n\n.heading-container {\n\tmargin-top: 5rem;\n}\n\n.prj-nav-con {\n\tmargin-top: 3rem;\n\twidth: 10rem;\n}\n\n.heading-project {\n\tpadding: 0.5rem 0 0.5rem 0;\n}\n\n\n\n/* ----------------------------- layout ------------------ */\n#content {\n\theight: 100vh;\n\tdisplay: grid;\n\tgrid-template-columns: repeat(12, [col-start]1fr) ;\n\tgrid-template-rows: repeat(12, [row-start] 1fr) ;\n}\n\n.sidebar-container {\n\tgrid-column: 1 / 3;\n\tgrid-row: 1 / 13;\n\n\tdisplay: flex;\n\tflex-direction: column;\n\tjustify-items: center;\n\talign-items: center;\n\n\tmin-width: 15rem;\n}\n\n.heading-container {\n\tgrid-column: 3 / 11;\n\tgrid-row: 2 / 3; \n\n\tdisplay: flex;\n\tjustify-content: center;\n\talign-items: center;\n\n\n}\n\n.create-taskBtn {\n\tgrid-column: 4 / 10;\n\tgrid-row: 3 / 4; \n}\n/* -------------------------------------------------------- */\n\n/* ------------------------- text --------------------------- */\nbody {\n\tfont-family: Roboto;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -528,6 +529,103 @@ function styleTagTransform(css, styleElement) {
 
 module.exports = styleTagTransform;
 
+/***/ }),
+
+/***/ "./src/dom.js":
+/*!********************!*\
+  !*** ./src/dom.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "NodeFac": () => (/* binding */ NodeFac)
+/* harmony export */ });
+// dom manipulation
+
+
+const NodeFac = (nameClass, typeOfElement, parent, txt) => {
+    // factory function that creates node objects with a class and appends it to
+    // its parent
+
+
+    // creates node and returns it
+    const crtNode = ()=> {
+        // select parent element
+        const parentElement = document.querySelector(parent);   
+
+        // create element
+        const createDomElement = document.createElement(typeOfElement);
+        createDomElement.className = nameClass;
+        createDomElement.textContent= txt;
+        parentElement.appendChild(createDomElement);
+
+        // created node is returned -> element methods can be used
+        return createDomElement;
+    }
+
+    return {crtNode};
+}
+
+
+
+
+/***/ }),
+
+/***/ "./src/home.js":
+/*!*********************!*\
+  !*** ./src/home.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "home": () => (/* binding */ home)
+/* harmony export */ });
+/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dom */ "./src/dom.js");
+// create the "home"-page
+
+
+const home = () => {
+
+    // --------------------- SIDEBAR --------------------------
+    // sidebar-container
+    const sideCon = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('sidebar-container', 'div', '#content').crtNode();
+
+    // header container
+    const headerCon = 
+        (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('heading-container', 'div', '.sidebar-container').
+        crtNode();
+    // heading sidebar
+    const sidebarH1 = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)
+        ('heading-sidebar', 'h1', '.heading-container', "To Do's")
+        .crtNode();
+
+    // create task btn
+    const taskBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)
+        ('create-taskBtn', 'button', '.sidebar-container', '+ Create Task')
+        .crtNode();
+
+    // create project nav container
+    const projectsCon = 
+        (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('prj-nav-con', 'div', '.sidebar-container')
+        .crtNode();
+    const prjH1Con = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('prj-h1-con', 'div', '.prj-nav-con').crtNode();    
+    const projectH1 = 
+        (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('heading-project', 'div', '.prj-h1-con', 'Projects')
+        .crtNode();
+    // set icon 
+    const dwnChevron = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('icon-chevron', 'img', '.prj-h1-con').crtNode();
+    dwnChevron.src="./images/chevron-down.svg";
+    
+
+    
+
+
+}
+
+
+
 /***/ })
 
 /******/ 	});
@@ -611,17 +709,19 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
+/* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home */ "./src/home.js");
+
 
 
 
 
 (() => {
-    console.log('lol')
-    //testHome();
+    //console.log('lol')
+    (0,_home__WEBPACK_IMPORTED_MODULE_1__.home)();
 })();
 
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundled7f6befbc189b5aa90eb.js.map
+//# sourceMappingURL=bundleb5dc7b9572853d4179de.js.map

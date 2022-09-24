@@ -1,22 +1,45 @@
 // create the "home"-page
-import { node, sidebar } from "./dom";
+import { NodeFac } from "./dom";
+import ChevronDown from './images/chevron-down.svg';
 
 const home = () => {
-    // create side bar
-    const side = node();
-    side.crtNode('sidebar-container', 'div', '#content');
+
+    // --------------------- SIDEBAR --------------------------
+    // sidebar-container
+    const sideCon = NodeFac('sidebar-container', 'div', '#content').crtNode();
 
     // header container
-    const h1Container = node();
-    h1Container.crtNode('header-container', 'div', '.sidebar-container');
-
+    const headerCon = 
+        NodeFac('heading-container', 'div', '.sidebar-container').
+        crtNode();
     // heading sidebar
-    const h1Sidebar = node();
-    h1Sidebar.crtNode('header-sidebar', 'h1', '.header-container', 'TO DOs');
+    const sidebarH1 = NodeFac
+        ('heading-sidebar', 'h1', '.heading-container', "To Do's")
+        .crtNode();
 
-    // create task
-    const taskBtn = node();
-    taskBtn.crtNode('create-task', 'button', '.sidebar-container', '+ New Task');
+    // create task btn
+    const taskBtn = NodeFac
+        ('create-taskBtn', 'button', '.sidebar-container', '+ Create Task')
+        .crtNode();
+
+    // create project nav container
+    const projectsCon = 
+        NodeFac('prj-nav-con', 'div', '.sidebar-container')
+        .crtNode();
+    const prjH1Con = NodeFac('prj-h1-con', 'div', '.prj-nav-con').crtNode();    
+    const projectH1 = 
+        NodeFac('heading-project', 'div', '.prj-h1-con', 'Projects')
+        .crtNode();
+    //set icon 
+    const iconChevronDown = new Image();
+    iconChevronDown.src = ChevronDown;
+    iconChevronDown.className = 'icon-chevron';
+    projectsCon.appendChild(iconChevronDown);
+
+
+    
+
+    
 
 
 }
