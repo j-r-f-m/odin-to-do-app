@@ -1,6 +1,5 @@
 // dom manipulation
 
-
 const NodeFac = (nameClass, typeOfElement, parent, txt) => {
     // factory function that creates node objects with a class and appends it to
     // its parent

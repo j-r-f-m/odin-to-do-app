@@ -51,9 +51,22 @@ table {
 }
 /* --------------------------------------------------------- */
 
+/* ----------------------------- background ----------------- */
+body {
+	background: url('./images/background-night.jpg');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+/* ----------------------------------------------------------- */
+
 /* ---------------------------- style --------------------------- */
 .sidebar-container, .heading-container, .prj-nav-con {
-	border: 1px solid purple;
+	/* border: 1px solid purple; */
+}
+
+.sidebar-container {
+	background-color: whitesmoke;
 }
 
 .heading-container, .create-taskBtn {
@@ -71,10 +84,22 @@ table {
 	width: 10rem;
 }
 
-.heading-project, .icon-chevron {
+.heading-project {
 	padding: 0.5rem 0 0.5rem 0;
 }
 
+.icon-chevron {
+	padding: 0.5rem;
+	background-color: grey;
+}
+
+.icon-chevron:hover, .icon-chevron:focus {
+	background-color: lightgrey;
+}
+
+.crt-tsk-con {
+	background-color: whitesmoke;
+}
 
 /* ----------------------------- layout ------------------ */
 #content {
@@ -112,11 +137,19 @@ table {
 
 .prj-nav-con {
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .icon-chevron {
 	height: 1rem;
 	margin-left: 1rem;
+	
+}
+
+.crt-tsk-con {
+	grid-column: 5 / 9;
+	grid-row: 5 / 10;
 }
 
 /* -------------------------------------------------------- */

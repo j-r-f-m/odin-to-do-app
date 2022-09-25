@@ -1,5 +1,8 @@
 // create the "home"-page
 import { NodeFac } from "./dom";
+import { TaskFac } from "./data";
+import { crtTskForm } from "./form";
+
 import ChevronDown from './images/chevron-down.svg';
 
 const home = () => {
@@ -21,6 +24,7 @@ const home = () => {
     const taskBtn = NodeFac
         ('create-taskBtn', 'button', '.sidebar-container', '+ Create Task')
         .crtNode();
+    taskBtn.addEventListener('click', crtTskForm);
 
     // create project nav container
     const projectsCon = 
@@ -35,13 +39,6 @@ const home = () => {
     iconChevronDown.src = ChevronDown;
     iconChevronDown.className = 'icon-chevron';
     projectsCon.appendChild(iconChevronDown);
-
-
-    
-
-    
-
-
 }
 
 export {
