@@ -4,9 +4,9 @@
 const allTasks = {};
 
 // factory function for tasks
-const TaskFac = (title, descr, dueDate, priority) => {
-    console.log(title, descr, dueDate, priority);
-    return {title, descr, dueDate, priority}
+const TaskFac = (title, descr, dueDate, tag) => {
+    console.log(title, descr, dueDate, tag);
+    return {title, descr, dueDate, tag}
 }
 
 

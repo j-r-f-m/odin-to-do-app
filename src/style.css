@@ -61,15 +61,15 @@ body {
 /* ----------------------------------------------------------- */
 
 /* ---------------------------- style --------------------------- */
-.sidebar-container, .heading-container, .prj-nav-con {
-	/* border: 1px solid purple; */
-}
+/* .sidebar-container, .heading-container, .prj-nav-con {
+	border: 1px solid purple;
+} */
 
 .sidebar-container {
 	background-color: whitesmoke;
 }
 
-.heading-container, .create-taskBtn {
+.heading-container, .btn {
 	width: 10rem;
 	padding: 0.5rem 0 0.5rem 0;
 	margin: 1rem;
@@ -130,10 +130,6 @@ body {
 	align-items: center;
 }
 
-.create-taskBtn {
-	grid-column: 4 / 10;
-	grid-row: 3 / 4; 
-}
 
 .prj-nav-con {
 	display: flex;
@@ -147,9 +143,9 @@ body {
 	
 }
 
-.crt-tsk-con {
-	grid-column: 5 / 9;
-	grid-row: 5 / 10;
+.input-form {
+	display: flex;
+	flex-direction: column;
 }
 
 /* -------------------------------------------------------- */

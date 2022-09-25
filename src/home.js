@@ -22,8 +22,9 @@ const home = () => {
 
     // create task btn
     const taskBtn = NodeFac
-        ('create-taskBtn', 'button', '.sidebar-container', '+ Create Task')
+        ('btn', 'button', '.sidebar-container', '+ Create Task')
         .crtNode();
+    taskBtn.setAttribute('id', 'create-taskBtn')
     taskBtn.addEventListener('click', crtTskForm);
 
     // create project nav container

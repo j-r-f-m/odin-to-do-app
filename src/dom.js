@@ -21,10 +21,21 @@ const NodeFac = (nameClass, typeOfElement, parent, txt) => {
     }
 
     return {crtNode};
+
 }
+
+
+const dltNode = (nodeId) => {
+    const node = document.getElementById(nodeId);
+    node.remove();
+}
+
+
+
 
 
 export {
     NodeFac,
+    dltNode,
 
 }
