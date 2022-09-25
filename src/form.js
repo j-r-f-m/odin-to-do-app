@@ -1,5 +1,7 @@
 // create from to create task
 import { NodeFac, dltNode } from "./dom";
+import { TaskFac, addTaskObj,getInputData } from './data';
+
 
 
 const crtTskForm = () => {
@@ -33,13 +35,13 @@ const crtTskForm = () => {
     inputDue.setAttribute('type', 'text');
     inputDue.setAttribute('name', 'due-date');
     inputDue.setAttribute('id', 'due-date');
-    // tag
-    const labelTag = NodeFac('label', 'label', '.input-form', 'Tag: ').crtNode();
-    labelTag.setAttribute('for', 'tag');
-    const inputTag = NodeFac('input', 'input', '.input-form').crtNode();
-    inputTag.setAttribute('type', 'text');
-    inputTag.setAttribute('name', 'tag');
-    inputTag.setAttribute('id', 'tag');
+    // Project
+    const labelproject = NodeFac('label', 'label', '.input-form', 'Project: ').crtNode();
+    labelproject.setAttribute('for', 'Project');
+    const inputProject = NodeFac('input', 'input', '.input-form').crtNode();
+    inputProject.setAttribute('type', 'text');
+    inputProject.setAttribute('name', 'project');
+    inputProject.setAttribute('id', 'project');
     // cancel button
     const cancelBtn = NodeFac('btn', 'button', '.input-form', 'Cancel').crtNode();
     cancelBtn.addEventListener('click', () => {
@@ -50,6 +52,14 @@ const crtTskForm = () => {
     })
     // confirm button
     const confirmBtn = NodeFac('btn', 'button', '.input-form', 'Confirm').crtNode();
+    confirmBtn.addEventListener('click', () => {
+        // const joe =  TaskFac(inputTitle.value, inputDescr.value, inputDue.value, inputProject.value);
+        // console.log(joe)
+        // console.log(joe.title)
+
+        addTaskObj(inputTitle.value, inputDescr.value, inputDue.value, inputProject.value);
+        dltNode('ipt-dialog');
+    })
 
     // show modal
     inputModal.showModal();
