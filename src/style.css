@@ -79,12 +79,14 @@ body {
 	margin-top: 5rem;
 }
 
-.prj-nav-con {
-	margin-top: 3rem;
+
+
+.prj-nav-con, .def-nav-con {
+	margin-top: 1rem;
 	width: 10rem;
 }
 
-.heading-project {
+.heading-project, .heading-default {
 	padding: 0.5rem 0 0.5rem 0;
 }
 
@@ -131,9 +133,9 @@ body {
 }
 
 
-.prj-nav-con {
+.prj-nav-con, .def-nav-con {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 }
 

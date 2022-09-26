@@ -31,11 +31,16 @@ const dltNode = (nodeId) => {
 }
 
 
-
+const setIcon = (source, nameOfClass, parent) => {
+    const icon = new Image();
+    icon.src = source;
+    icon.className = nameOfClass;
+    parent.appendChild(icon);
+}
 
 
 export {
     NodeFac,
     dltNode,
-
+    setIcon,
 }

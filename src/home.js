@@ -1,5 +1,5 @@
 // create the "home"-page
-import { NodeFac } from "./dom";
+import { NodeFac, setIcon } from "./dom";
 import { TaskFac } from "./data";
 import { crtTskForm } from "./form";
 
@@ -27,6 +27,18 @@ const home = () => {
     taskBtn.setAttribute('id', 'create-taskBtn')
     taskBtn.addEventListener('click', crtTskForm);
 
+    // create all task summary
+    const defaultCon = NodeFac('def-nav-con', 'div', '.sidebar-container').crtNode();
+    const defH1Con = NodeFac('def-h1-con', 'div', '.def-nav-con').crtNode();
+    const defaultH1 = NodeFac('heading-default', 'div', '.def-h1-con', 'Default').crtNode();
+    //set icon 
+
+
+
+
+    const defIcon = setIcon(ChevronDown, 'icon-chevron', defaultCon);
+
+
     // create project nav container
     const projectsCon = 
         NodeFac('prj-nav-con', 'div', '.sidebar-container')
@@ -36,10 +48,10 @@ const home = () => {
         NodeFac('heading-project', 'div', '.prj-h1-con', 'Projects')
         .crtNode();
     //set icon 
-    const iconChevronDown = new Image();
-    iconChevronDown.src = ChevronDown;
-    iconChevronDown.className = 'icon-chevron';
-    projectsCon.appendChild(iconChevronDown);
+    const icnChevDwnPrj = new Image();
+    icnChevDwnPrj.src = ChevronDown;
+    icnChevDwnPrj.className = 'icon-chevron';
+    projectsCon.appendChild(icnChevDwnPrj);
 }
 
 export {
