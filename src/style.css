@@ -79,7 +79,10 @@ body {
 	margin-top: 5rem;
 }
 
-
+.task {
+	height: 1rem;
+	margin: 1rem 0 1rem 0;
+}
 
 .prj-nav-con, .def-nav-con {
 	margin-top: 1rem;
@@ -90,9 +93,11 @@ body {
 	padding: 0.5rem 0 0.5rem 0;
 }
 
-.icon-chevron {
+.icon-chevron, .icon-chevron-down {
 	padding: 0.5rem;
 	background-color: grey;
+	height: 1rem;
+	margin-left: 1rem;
 }
 
 .icon-chevron:hover, .icon-chevron:focus {
@@ -133,17 +138,18 @@ body {
 }
 
 
-.prj-nav-con, .def-nav-con {
+.def-nav-con, .prj-nav-con {
+	display: flex;
+	flex-direction: column;
+}
+
+.def-h1-con, .prj-h1-con {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.icon-chevron {
-	height: 1rem;
-	margin-left: 1rem;
-	
-}
+
 
 .input-form {
 	display: flex;
