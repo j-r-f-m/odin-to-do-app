@@ -65,9 +65,11 @@ body {
 	border: 1px solid purple;
 } */
 
-.sidebar-container {
+.sidebar-container, .tasks-container-overview {
 	background-color: whitesmoke;
 }
+
+
 
 .heading-container, .btn {
 	width: 10rem;
@@ -79,9 +81,15 @@ body {
 	margin-top: 5rem;
 }
 
-.task {
+
+.project, .task  {
 	height: 1rem;
-	margin: 1rem 0 1rem 0;
+	margin: 0.5rem 0 0.5rem 0;
+	padding: 0.5rem 0 0.5rem 0.5rem;
+}
+
+.project:hover, .project:focus, .task:hover, .task:focus {
+	background-color: lightgray;
 }
 
 .prj-nav-con, .def-nav-con {
@@ -93,19 +101,23 @@ body {
 	padding: 0.5rem 0 0.5rem 0;
 }
 
-.icon-chevron, .icon-chevron-down {
+.icon-chevron, .icon-chevron-down , #icon-close{
 	padding: 0.5rem;
 	background-color: grey;
 	height: 1rem;
 	margin-left: 1rem;
 }
 
-.icon-chevron:hover, .icon-chevron:focus {
+.icon-chevron:hover, .icon-chevron:focus, #icon-close:hover, #icon-close:focus {
 	background-color: lightgrey;
 }
 
 .crt-tsk-con {
 	background-color: whitesmoke;
+}
+
+.tsk-heading-con {
+	margin: 0.5rem;
 }
 
 /* ----------------------------- layout ------------------ */
@@ -128,6 +140,11 @@ body {
 	min-width: 15rem;
 }
 
+.tasks-container-overview {
+	grid-column: 6 / 10;
+	grid-row: 3 / 7;
+}
+
 .heading-container {
 	grid-column: 3 / 11;
 	grid-row: 2 / 3; 
@@ -143,7 +160,7 @@ body {
 	flex-direction: column;
 }
 
-.def-h1-con, .prj-h1-con {
+.def-h1-con, .prj-h1-con, .tsk-heading-con {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -161,4 +178,9 @@ body {
 /* ------------------------- text --------------------------- */
 body {
 	font-family: Roboto;
+}
+
+h1 {
+	font-weight: 700;
+	font-size: large;
 }

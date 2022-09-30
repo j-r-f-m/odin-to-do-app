@@ -1,6 +1,7 @@
 import ChevronDown from './images/chevron-down.svg';
 import ChevronUp from './images/chevron-up.svg';
-import { allTasks } from "./data";
+import { taskOverview } from './displayTask';
+import { allTasks, allProjects } from "./data";
 
 // dom manipulation
 
@@ -69,7 +70,7 @@ const crtChevronUpDef = (source, nameOfClass, nameOfId, parent) => {
 const crtChevronDownDef = (source, nameOfClass, nameOfId, parent) => {
 
     const tempChevron = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
-    console.log(tempChevron)
+    
     tempChevron.addEventListener('click', () => {
         // create container for tasks
         const defaultTasks = NodeFac('default-tasks', 'div', '.def-nav-con').crtNode();
@@ -102,12 +103,12 @@ const crtChevronUpPrj = (source, nameOfClass, nameOfId, parent) => {
 const crtChevronDownPrj = (source, nameOfClass, nameOfId, parent) => {
 
     const tempChevron = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
-    console.log(tempChevron)
+    
     tempChevron.addEventListener('click', () => {
         // create container for tasks
-        const defaultTasks = NodeFac('default-tasks', 'div', '.prj-nav-con').crtNode();
+        const defaultProjects = NodeFac('projects-tasks', 'div', '.prj-nav-con').crtNode();
         // display tasks in sidebar
-        //taskList(allTasks, '.default-tasks');
+        projectsList(allProjects, '.projects-tasks');
         // create "chevron-up" to minimize the default tasks, add id to delete it later
         crtChevronUpPrj(ChevronUp, 'icon-chevron', 'icon-chevron-up-prj', parent);
         
@@ -130,15 +131,38 @@ const IconFac = (source, nameOfClass, nameOfId, parent) => {
     return {crtIcon}
 }
 
+
+
 const taskList = (arr, parent) => {
-    // display tasks in sidebar
+    // display all tasks in sidebar
     for (let i = 0;i < arr.length; i++) {
-        console.log(arr[i].title)
-       
-        const newTask = NodeFac('task', 'div', parent, `${arr[i].title} - Due ${arr[i].dueDate}`).crtNode();
+        const newTask = NodeFac('task', 'div', parent, `${arr[i].title} - ${arr[i].dueDate}`).crtNode();
         newTask.setAttribute('data', `${arr[i].title}`);
     }
+}
 
+const projectsList = (arr, parent) => {
+        // display all projects in sidebar
+        for (let i = 0;i < arr.length; i++) {
+            //
+            crtPrjsBtn('project', 'div', parent, `${arr[i].title}`, `${i}`);
+
+        }
+}
+
+const crtPrjsBtn = (nameClass, typeOfElement, parent, txt, idOfEle) => {
+    // create the projects elemnts in the side bar and add eventllistener
+    // with the last argument the position of the project in the allProjects array
+    // is passed and can be used with the event-argument
+    const prj = NodeFac(nameClass, typeOfElement, parent, txt, idOfEle).crtNode();
+    prj.id = idOfEle;
+    prj.addEventListener('click', (e) => {
+  
+        dltNode('.tasks-container-overview');
+        taskOverview(e);
+        
+
+    })
 }
 
 export {

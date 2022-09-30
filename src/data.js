@@ -5,9 +5,26 @@ const allTasks = [
     {
         title: 'test 1',
         descr: 'testing',
-        dueDate: '20.1.2200',
+        dueDate: '20.1.22',
         project: 'test project 1'
+    },
+    {
+        title: 'test 2',
+        descr: 'testing',
+        dueDate: '21.1.2200',
+        project: 'test project 2'
     }
+];
+
+// object that holds all tasks
+const allProjects = [
+    {
+        title: 'Test Project 1',
+    },
+    {
+        title: 'Test Project 2'
+    }
+
 ];
 
 // factory function that creates tasks
@@ -32,6 +49,7 @@ const addTaskObj = (title, descr, dueDate, project) => {
 
 export {
     allTasks,
+    allProjects,
     TaskFac,
     addTaskObj,
    

@@ -1,10 +1,8 @@
 // create the "home"-page
-import { NodeFac, IconFac, taskList, crtChevronUpDef, crtChevronUpPrj, dltNode } from "./dom";
-import { allTasks } from "./data";
+import { NodeFac, crtChevronDownDef, crtChevronDownPrj } from "./dom";
 import { crtTskForm } from "./form";
 
 import ChevronDown from './images/chevron-down.svg';
-import ChevronUp from './images/chevron-up.svg';
 
 const home = () => {
     // this html gets created the first time the side is used
@@ -28,46 +26,29 @@ const home = () => {
         ('btn', 'button', '.sidebar-container', '+ Create Task')
         .crtNode();
     taskBtn.setAttribute('id', 'create-taskBtn')
-    taskBtn.addEventListener('click', crtTskForm);
+    taskBtn.addEventListener('click', () => {
+        crtTskForm();
+        dltNode('.tasks-container-overview')
+    });
+
+    
 
     // create all task summary
     const defaultCon = NodeFac('def-nav-con', 'div', '.sidebar-container').crtNode();
     const defH1Con = NodeFac('def-h1-con', 'div', '.def-nav-con').crtNode();
-    const defaultH1 = NodeFac('heading-default', 'div', '.def-h1-con', 'Default').crtNode();
-    
-    //set icon 
-    const defIconDwn = IconFac(ChevronDown, 'icon-chevron', 'icon-chevron-down-1', defH1Con).crtIcon();
-    // need id to delete it later
-   
-    defIconDwn.addEventListener('click', () => {
-        // create container for tasks
-        const defaultTasks = NodeFac('default-tasks', 'div', '.def-nav-con').crtNode();
-        // display tasks in sidebar
-        taskList(allTasks, '.default-tasks');
-        // create "chevron-up" to minimize the default tasks, add id to delete it later
-        crtChevronUpDef(ChevronUp, 'icon-chevron', 'icon-chevron-up-def', defH1Con);
-        
-        // delete chevron down
-        dltNode('#icon-chevron-down-1');
-    })
+    const defaultH1 = NodeFac('heading-default', 'h1', '.def-h1-con', 'Default').crtNode();
 
+    // create chevron down button for default
+    crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', defH1Con);
+
+    // create chevron down button for projects
     // create project nav container
-    const projectsCon = 
-        NodeFac('prj-nav-con', 'div', '.sidebar-container')
-        .crtNode();
+    const projectsCon = NodeFac('prj-nav-con', 'div', '.sidebar-container').crtNode();
     const prjH1Con = NodeFac('prj-h1-con', 'div', '.prj-nav-con').crtNode();    
-    const projectH1 = 
-        NodeFac('heading-project', 'div', '.prj-h1-con', 'Projects')
-        .crtNode();
-    //set icon 
-    const prjIconDwn = IconFac(ChevronDown, 'icon-chevron', 'icon-chevron-down-2', prjH1Con).crtIcon();
-    prjIconDwn.addEventListener('click', () => {
-            // create container for tasks
-            const projectsTasks = NodeFac('projects-tasks', 'div', '.prj-nav-con').crtNode();
-            crtChevronUpPrj(ChevronUp, 'icon-chevron', 'icon-chevron-up-prj', prjH1Con);
-            // delete chevron down
-            dltNode('#icon-chevron-down-2');
-    })
+    const projectH1 = NodeFac('heading-project', 'h1', '.prj-h1-con', 'Projects').crtNode();
+    // //set icon 
+    crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
+
     
 
 }
