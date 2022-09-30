@@ -1,5 +1,5 @@
 // create from to create task
-import { NodeFac, dltNode, dltClassEle, crtChevronDownDef } from "./dom";
+import { NodeFac, dltNode, dltClassEle, crtChevronDownDef, crtChevronDownPrj } from "./dom";
 import { addTaskObj } from './data';
 
 import ChevronDown from './images/chevron-down.svg';
@@ -51,10 +51,6 @@ const crtTskForm = () => {
     // cancel button
     const cancelBtn = NodeFac('btn', 'button', '.input-form', 'Cancel').crtNode();
     cancelBtn.addEventListener('click', () => {
-        
-
-
-        console.log('cancel')
         // delete dialog
         dltNode('#ipt-dialog');
         inputModal.close();
@@ -89,7 +85,8 @@ const crtTskForm = () => {
             dltClassEle('.icon-chevron');
             // dltNode('#icon-chevron-up');
             // dltNode('#icon-chevron-down');
-            crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down', defH1Con);
+            crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', defH1Con);
+            crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
             //crtChevronDown(ChevronDown, 'icon-chevron', 'icon-chevron-down', prjH1Con);
         }
     })

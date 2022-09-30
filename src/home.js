@@ -1,5 +1,5 @@
 // create the "home"-page
-import { NodeFac, IconFac, taskList, crtChevronUp, dltNode } from "./dom";
+import { NodeFac, IconFac, taskList, crtChevronUpDef, crtChevronUpPrj, dltNode } from "./dom";
 import { allTasks } from "./data";
 import { crtTskForm } from "./form";
 
@@ -36,7 +36,7 @@ const home = () => {
     const defaultH1 = NodeFac('heading-default', 'div', '.def-h1-con', 'Default').crtNode();
     
     //set icon 
-    const defIconDwn = IconFac(ChevronDown, 'icon-chevron', 'icon-chevron-down', defH1Con).crtIcon();
+    const defIconDwn = IconFac(ChevronDown, 'icon-chevron', 'icon-chevron-down-1', defH1Con).crtIcon();
     // need id to delete it later
    
     defIconDwn.addEventListener('click', () => {
@@ -45,10 +45,10 @@ const home = () => {
         // display tasks in sidebar
         taskList(allTasks, '.default-tasks');
         // create "chevron-up" to minimize the default tasks, add id to delete it later
-        crtChevronUp(ChevronUp, 'icon-chevron', 'icon-chevron-up', defH1Con);
+        crtChevronUpDef(ChevronUp, 'icon-chevron', 'icon-chevron-up-def', defH1Con);
         
         // delete chevron down
-        dltNode('#icon-chevron-down');
+        dltNode('#icon-chevron-down-1');
     })
 
     // create project nav container
@@ -60,11 +60,15 @@ const home = () => {
         NodeFac('heading-project', 'div', '.prj-h1-con', 'Projects')
         .crtNode();
     //set icon 
-    const prjIcon = IconFac(ChevronDown, 'icon-chevron', 'icon-chevron-down', prjH1Con).crtIcon();
+    const prjIconDwn = IconFac(ChevronDown, 'icon-chevron', 'icon-chevron-down-2', prjH1Con).crtIcon();
+    prjIconDwn.addEventListener('click', () => {
+            // create container for tasks
+            const projectsTasks = NodeFac('projects-tasks', 'div', '.prj-nav-con').crtNode();
+            crtChevronUpPrj(ChevronUp, 'icon-chevron', 'icon-chevron-up-prj', prjH1Con);
+            // delete chevron down
+            dltNode('#icon-chevron-down-2');
+    })
     
-    // prjIcon.addEventListener('click', () => {
-    //     console.log('lol')
-    // })
 
 }
 

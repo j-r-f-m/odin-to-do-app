@@ -50,18 +50,18 @@ const dltNode = (selector) => {
 }
 
 // create chevron up button
-const crtChevronUp = (source, nameOfClass, nameOfId, parent) => {
-
-    console.log('lolsa')
+const crtChevronUpDef = (source, nameOfClass, nameOfId, parent) => {
 
     const tempChevron = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
-    console.log(tempChevron)
+    // purpose of button ist to close the dropdown
+    // 1. delete list of task
+    // 2. delete button and add chevron up button
     tempChevron.addEventListener('click', () => {
         // delete task list
         dltNode('.default-tasks');
-        crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down', parent);
+        crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', parent);
         // delete chevron up
-        dltNode('#icon-chevron-up');
+        dltNode('#icon-chevron-up-def');
 
     })
 }
@@ -76,14 +76,44 @@ const crtChevronDownDef = (source, nameOfClass, nameOfId, parent) => {
         // display tasks in sidebar
         taskList(allTasks, '.default-tasks');
         // create "chevron-up" to minimize the default tasks, add id to delete it later
-        crtChevronUp(ChevronUp, 'icon-chevron', 'icon-chevron-up', parent);
+        crtChevronUpDef(ChevronUp, 'icon-chevron', 'icon-chevron-up-def', parent);
         
         // delete chevron down
-        dltNode('#icon-chevron-down');
+        dltNode('#icon-chevron-down-def');
+    })
+};
+
+const crtChevronUpPrj = (source, nameOfClass, nameOfId, parent) => {
+    const tempChevron = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
+    // purpose of button ist to close the dropdown
+    // 1. delete list of task
+    // 2. delete button and add chevron up button
+    tempChevron.addEventListener('click', () => {
+        // delete task list
+        dltNode('.projects-tasks');
+        crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', parent);
+        // delete chevron up
+        dltNode('#icon-chevron-up-prj');
 
     })
-    
+}
 
+// create chevron up button for Default Projects
+const crtChevronDownPrj = (source, nameOfClass, nameOfId, parent) => {
+
+    const tempChevron = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
+    console.log(tempChevron)
+    tempChevron.addEventListener('click', () => {
+        // create container for tasks
+        const defaultTasks = NodeFac('default-tasks', 'div', '.prj-nav-con').crtNode();
+        // display tasks in sidebar
+        //taskList(allTasks, '.default-tasks');
+        // create "chevron-up" to minimize the default tasks, add id to delete it later
+        crtChevronUpPrj(ChevronUp, 'icon-chevron', 'icon-chevron-up-prj', parent);
+        
+        // delete chevron down
+        dltNode('#icon-chevron-down-prj');
+    })
 };
 
 const IconFac = (source, nameOfClass, nameOfId, parent) => {
@@ -116,7 +146,9 @@ export {
     dltNode,
     IconFac,
     taskList,
-    crtChevronUp,
     crtChevronDownDef,
+    crtChevronUpDef,
+    crtChevronDownPrj,
+    crtChevronUpPrj,
     dltClassEle,
 }
