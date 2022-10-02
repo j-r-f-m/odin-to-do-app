@@ -1,8 +1,9 @@
 // create the "home"-page
-import { NodeFac, crtChevronDownDef, crtChevronDownPrj } from "./dom";
+import { NodeFac, crtChevronDownDef, crtChevronDownPrj, crtPlusBtn, dltNode, dltClassEle } from "./dom";
 import { crtTskForm } from "./form";
 
 import ChevronDown from './images/chevron-down.svg';
+import Plus from './images/plus.svg';
 
 const home = () => {
     // this html gets created the first time the side is used
@@ -27,11 +28,10 @@ const home = () => {
         .crtNode();
     taskBtn.setAttribute('id', 'create-taskBtn')
     taskBtn.addEventListener('click', () => {
+        dltNode('.dialog');
         crtTskForm();
-        dltNode('.tasks-container-overview')
+        dltNode('.tasks-container-overview');
     });
-
-    
 
     // create all task summary
     const defaultCon = NodeFac('def-nav-con', 'div', '.sidebar-container').crtNode();
@@ -46,7 +46,9 @@ const home = () => {
     const projectsCon = NodeFac('prj-nav-con', 'div', '.sidebar-container').crtNode();
     const prjH1Con = NodeFac('prj-h1-con', 'div', '.prj-nav-con').crtNode();    
     const projectH1 = NodeFac('heading-project', 'h1', '.prj-h1-con', 'Projects').crtNode();
-    // //set icon 
+    // create plus button for adding new projects
+    crtPlusBtn(Plus, 'icon', 'icon-plus', prjH1Con);
+    //create chevron down for projects 
     crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
 
     

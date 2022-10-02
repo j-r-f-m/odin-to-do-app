@@ -1,4 +1,4 @@
-import { NodeFac, IconFac, dltNode } from "./dom";
+import { NodeFac, IconFac, dltNode, crtDltBtn, } from "./dom";
 import { allProjects } from "./data";
 import ImgClose from "./images/close.svg";
 // displays task to a corresponding project
@@ -13,11 +13,8 @@ const taskOverview = (e) => {
        const idx = parseFloat(e.target.id);
        //tasks-heading
        const tskh1 = NodeFac('tasks-h1','h1','.tsk-heading-con', `${allProjects[idx].title}`).crtNode();
-       // cloxe button
-       const closeIcon = IconFac(ImgClose, 'close', 'icon-close', headCon).crtIcon();
-       closeIcon.addEventListener('click', () => {
-        dltNode('.tasks-container-overview')
-       })
+       // close button
+       crtDltBtn(ImgClose, 'close', 'icon-close', headCon, '.tasks-container-overview');
 }
 
 export {

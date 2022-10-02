@@ -101,14 +101,16 @@ body {
 	padding: 0.5rem 0 0.5rem 0;
 }
 
-.icon-chevron, .icon-chevron-down , #icon-close{
+.icon-chevron, .icon-chevron-down , #icon-close, #icon-plus{
 	padding: 0.5rem;
 	background-color: grey;
 	height: 1rem;
-	margin-left: 1rem;
+	margin-left: 0.5rem;
 }
 
-.icon-chevron:hover, .icon-chevron:focus, #icon-close:hover, #icon-close:focus {
+.icon-chevron:hover, .icon-chevron:focus, #icon-close:hover, #icon-close:focus, 
+#icon-plus:hover, #icon-plus:focus
+ {
 	background-color: lightgrey;
 }
 
@@ -154,13 +156,12 @@ body {
 	align-items: center;
 }
 
-
 .def-nav-con, .prj-nav-con {
 	display: flex;
 	flex-direction: column;
 }
 
-.def-h1-con, .prj-h1-con, .tsk-heading-con {
+.def-h1-con, .prj-h1-con, .tsk-heading-con, .projects-container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -177,7 +178,7 @@ body {
 
 /* ------------------------- text --------------------------- */
 body {
-	font-family: Roboto;
+	font-family: Roboto, sans-serif;
 }
 
 h1 {

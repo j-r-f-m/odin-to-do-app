@@ -44,7 +44,21 @@ const addTaskObj = (title, descr, dueDate, project) => {
     // If task has same name dont add to array
 }
 
+const PrjFact = (title) => {
+    return {title}
+}
 
+const addPrjObj = (title) => {
+    const tempPrj = PrjFact(title);
+    allProjects.push(tempPrj)
+}
+
+const rmvEle = (array, nameOfEle) => {
+    // removes element from array
+    const testfunc = (ele) => ele.title === nameOfEle;
+    const idxObj = array.findIndex(testfunc);
+    array.splice(idxObj, 1);
+}
 
 
 export {
@@ -52,6 +66,7 @@ export {
     allProjects,
     TaskFac,
     addTaskObj,
-   
-    //formVali,
+    PrjFact, 
+    addPrjObj,
+    rmvEle,
 }

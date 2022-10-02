@@ -1,6 +1,9 @@
 // create from to create task
-import { NodeFac, dltNode, dltClassEle, crtChevronDownDef, crtChevronDownPrj } from "./dom";
-import { addTaskObj } from './data';
+import { 
+    NodeFac, dltNode, dltClassEle, crtChevronDownDef, crtChevronDownPrj, projectsList,
+    crtDltBtn,
+} from "./dom";
+import { addTaskObj, addPrjObj, allProjects } from './data';
 
 import ChevronDown from './images/chevron-down.svg';
 import ChevronUp from './images/chevron-up.svg';
@@ -95,6 +98,63 @@ const crtTskForm = () => {
     inputModal.showModal();
 }
 
+const crtPrjForm = () => {
+        //modal - create dialog
+        const inputModal = NodeFac('dialog', 'dialog', '#content').crtNode();
+        inputModal.setAttribute('id', 'ipt-dialog');
+        // form    
+        const form = NodeFac('input-form', 'form', '.dialog').crtNode();
+        form.setAttribute('method', 'dialog');
+        // title
+        const labelTitle = NodeFac('label', 'label', '.input-form', 'Title').crtNode();
+        labelTitle.setAttribute('for', 'title');
+        const inputTitle = NodeFac('input', 'input', '.input-form').crtNode();
+        inputTitle.setAttribute('type', 'text');
+        inputTitle.setAttribute('name', 'title');
+        inputTitle.setAttribute('id', 'task-title');
+        inputTitle.required = true;
+
+        // cancel button
+        const cancelBtn = NodeFac('btn', 'button', '.input-form', 'Cancel').crtNode();
+        cancelBtn.addEventListener('click', () => {
+            // delete dialog
+            dltNode('#ipt-dialog');
+            inputModal.close();
+        })
+
+        // confirm button
+        const confirmBtn = NodeFac('btn', 'input', '.input-form', 'Confirm').crtNode();
+        confirmBtn.setAttribute('type', 'submit');
+
+            // get parent of the default tasks list heading in order to add new chevron 
+        // down icons
+        const defH1Con = document.querySelector('.def-h1-con');
+        const prjH1Con = document.querySelector('.prj-h1-con');
+
+        confirmBtn.addEventListener('click', () => {
+            // Form validation
+            if (inputTitle.value === '') {
+                return
+            } else {
+                // if validation is passed then create new task object
+                addPrjObj(inputTitle.value);
+                dltNode('#ipt-dialog');
+                dltNode('.projects-tasks');
+                // display tasks in sidebar
+                /* const crtPrjsTsk = NodeFac('projects-tasks', 'div', '.prj-nav-con').crtNode();
+                projectsList(allProjects, '.projects-tasks'); */
+                dltClassEle('.icon-chevron');
+                crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', defH1Con);
+                crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
+                //crtChevronDown(ChevronDown, 'icon-chevron', 'icon-chevron-down', prjH1Con);
+
+            }
+        })
+
+        inputModal.showModal();
+}
+
 export {
     crtTskForm,
+    crtPrjForm,
 }
