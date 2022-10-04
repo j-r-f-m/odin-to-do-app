@@ -6,13 +6,13 @@ const allTasks = [
         title: 'test 1',
         descr: 'testing',
         dueDate: '20.1.22',
-        project: 'test project 1'
+        project: 'Test Project 1'
     },
     {
         title: 'test 2',
         descr: 'testing',
         dueDate: '21.1.2200',
-        project: 'test project 2'
+        project: 'Test Project 1'
     }
 ];
 

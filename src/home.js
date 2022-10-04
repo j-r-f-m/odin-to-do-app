@@ -1,5 +1,5 @@
 // create the "home"-page
-import { NodeFac, crtChevronDownDef, crtChevronDownPrj, crtPlusBtn, dltNode, dltClassEle } from "./dom";
+import { NodeFac, crtChevronDownDef, crtChevronDownPrj, crtPlusBtnPrj, dltNode,  } from "./dom";
 import { crtTskForm } from "./form";
 
 import ChevronDown from './images/chevron-down.svg';
@@ -30,7 +30,7 @@ const home = () => {
     taskBtn.addEventListener('click', () => {
         dltNode('.dialog');
         crtTskForm();
-        dltNode('.tasks-container-overview');
+        //dltNode('.tasks-container-overview');
     });
 
     // create all task summary
@@ -47,7 +47,7 @@ const home = () => {
     const prjH1Con = NodeFac('prj-h1-con', 'div', '.prj-nav-con').crtNode();    
     const projectH1 = NodeFac('heading-project', 'h1', '.prj-h1-con', 'Projects').crtNode();
     // create plus button for adding new projects
-    crtPlusBtn(Plus, 'icon', 'icon-plus', prjH1Con);
+    crtPlusBtnPrj(Plus, 'icon', 'icon-plus', prjH1Con);
     //create chevron down for projects 
     crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
 
