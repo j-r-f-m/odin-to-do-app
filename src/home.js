@@ -23,23 +23,24 @@ const home = () => {
         .crtNode();
 
     // create task btn
-    const taskBtn = NodeFac
-        ('btn', 'button', '.sidebar-container', '+ Create Task')
-        .crtNode();
-    taskBtn.setAttribute('id', 'create-taskBtn')
-    taskBtn.addEventListener('click', () => {
-        dltNode('.dialog');
-        crtTskForm();
-        //dltNode('.tasks-container-overview');
-    });
+    // const taskBtn = NodeFac
+    //     ('btn', 'button', '.sidebar-container', '+ Create Task')
+    //     .crtNode();
+    // taskBtn.setAttribute('id', 'create-taskBtn')
+    // taskBtn.addEventListener('click', () => {
+    //     dltNode('.dialog');
+    //     crtTskForm();
+    //     //dltNode('.tasks-container-overview');
+    // });
 
-    // create all task summary
-    const defaultCon = NodeFac('def-nav-con', 'div', '.sidebar-container').crtNode();
-    const defH1Con = NodeFac('def-h1-con', 'div', '.def-nav-con').crtNode();
-    const defaultH1 = NodeFac('heading-default', 'h1', '.def-h1-con', 'Default').crtNode();
+    // create task nav container
+    // const defaultCon = NodeFac('def-nav-con', 'div', '.sidebar-container').crtNode();
+    // const defH1Con = NodeFac('def-h1-con', 'div', '.def-nav-con').crtNode();
+    // const defaultH1 = NodeFac('heading-default', 'h1', '.def-h1-con', 'Default').crtNode();
+    
 
     // create chevron down button for default
-    crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', defH1Con);
+    //crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', defH1Con);
 
     // create chevron down button for projects
     // create project nav container
@@ -49,7 +50,7 @@ const home = () => {
     // create plus button for adding new projects
     crtPlusBtnPrj(Plus, 'icon', 'icon-plus', prjH1Con);
     //create chevron down for projects 
-    crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
+    // crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
 
     
 

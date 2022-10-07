@@ -140,6 +140,9 @@ const crtPlusBtnTsk = (source, nameOfClass, nameOfId, parent) => {
 }
 
 const setDefaultPrj = () => {
+    // get the project name from tasks-h1 and set it as default
+    // in input field
+
     // select input field
     const selectPrjIpt = document.getElementById('project')
     // select header of tasks overview to get title
@@ -159,6 +162,9 @@ const crtPrjsBtn = (nameClass, typeOfElement, parent, txt, idOfEle) => {
         tskListByPrj(allTasks, '.tasks-container-overview', e.target.textContent)
         dltNode('.tasks-container-overview');
         taskOverview(e);
+        taskList(allTasks, '.tasks-container-overview');
+        // create tasks container
+        //NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
     })
 }
 
@@ -170,18 +176,32 @@ const crtDltBtn = (source, nameOfClass, nameOfId, parent, nodeToDlt) => {
     })
 }
 
-const crtDltBtnPrj = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => {
+const crtDltBtnPrj = (source, nameOfClass, nameOfId, parent, nodeToDlt, nodeToDlt2, obj) => {
     // x-shaped delete button for deleteing projects
     // not only the dom-elements have to be deleted, also the array containing 
     // all the projects has to be updated -> deleting corresponding element
     const closeIcon = IconFac(ImgClose, nameOfClass, nameOfId, parent).crtIcon();
-    closeIcon.addEventListener('click', () => {
+    closeIcon.addEventListener('click', (e) => {
+        // delete node where the button is located
         dltNode(nodeToDlt);
+        // delete projects container;
+        //dltNode(nodeToDlt2);
+        console.log(nodeToDlt2)
+        // remove project from array
         rmvEle(allProjects, obj.title);
-        console.log(allProjects);
+        // remove task overview if it is opened
+        rmvTskOver(e);
+        //dltNode(parent)
+        console.log('hi');
     })
 }
 
+
+// remove task overview of corresponding porject when the project gets deleted
+const rmvTskOver = (e) => {
+    console.log(e.target.parentElement.firstChild.textContent);
+    dltNode(`#${e.target.parentElement.firstChild.textContent}`);
+}
 
 
 //const addPrj = IconFac();
@@ -200,12 +220,24 @@ const IconFac = (source, nameOfClass, nameOfId, parent) => {
 }
 
 const taskList = (arr, parent) => {
-    // display all tasks in sidebar
+    // display all tasks 
+    // create the div that holds the tasks 
+    const tasksContainer =  NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
+
     for (let i = 0; i < arr.length; i++) {
-        // 
-        const newTask = NodeFac('task', 'div', parent, `${arr[i].title} - ${arr[i].dueDate}`).crtNode();
-        newTask.setAttribute('data', `${arr[i].title}`);
+
+        // create the project-div that holds project and dlt-button
+        const tempTaskCon = NodeFac(`tasks-container-${i}`, 'div', '.tasks-container').crtNode();
+
+        const newTask = NodeFac('task', 'div', '.tasks-container', `${arr[i].title} - ${arr[i].dueDate}`).crtNode();
+        //tskCon.classList.add('ta-container');
+        // create project div -> open overview containing corresponding tasks 
+        //crtTsksBtn('task', 'div', `.projects-container-${i}`, `${arr[i].title}`, `${i}`);
+        // // create delete Button that deletes html element and objects in allPrjs. array 
+        // crtDltBtnPrj(ImgClose, 'close', 'icon-close', tempPrjCon, `.projects-container-${i}`, '.projects-tasks', arr[i]);
+        
     }
+    
 }
 
 const tskListByPrj = (arr, parent, projectName) => {
@@ -228,7 +260,7 @@ const projectsList = (arr, parent) => {
         // create project div -> open overview containing corresponding tasks 
         crtPrjsBtn('project', 'div', `.projects-container-${i}`, `${arr[i].title}`, `${i}`);
         // create delete Button that deletes html element and objects in allPrjs. array 
-        crtDltBtnPrj(ImgClose, 'close', 'icon-close', tempPrjCon, `.projects-container-${i}`, arr[i]);
+        crtDltBtnPrj(ImgClose, 'close', 'icon-close', tempPrjCon, `.projects-container-${i}`, '.tasks-container-overview', arr[i]);
     }
 }
 

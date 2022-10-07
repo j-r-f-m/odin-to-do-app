@@ -17,15 +17,7 @@ const allTasks = [
 ];
 
 // object that holds all tasks
-const allProjects = [
-    {
-        title: 'Test Project 1',
-    },
-    {
-        title: 'Test Project 2'
-    }
-
-];
+const allProjects = [];
 
 // factory function that creates tasks
 const TaskFac = (title, descr, dueDate, project) => {

@@ -1,15 +1,16 @@
 // create from to create task
 import { 
-    NodeFac, dltNode, dltClassEle, crtChevronDownDef, crtChevronDownPrj, projectsList,
+    NodeFac, dltNode, taskList, crtChevronDownDef, crtChevronDownPrj, projectsList,
     crtDltBtn,
 } from "./dom";
-import { addTaskObj, addPrjObj, allProjects } from './data';
+import { addTaskObj, addPrjObj, allProjects, allTasks } from './data';
 
 import ChevronDown from './images/chevron-down.svg';
 import ChevronUp from './images/chevron-up.svg';
 
 
 const crtTskForm = () => {
+    // create a new task
     // create input form with model to get data for task
 
     //modal - create dialog
@@ -82,14 +83,21 @@ const crtTskForm = () => {
         } else {
             // if validation is passed then create new task object
             addTaskObj(inputTitle.value, inputDescr.value, inputDue.value, inputProject.value);
+            // delete old dialog
             dltNode('#ipt-dialog');
             dltNode('.default-tasks');
-
-            dltClassEle('.icon-chevron');
+            dltNode('.tasks-container');
+            console.log(allTasks);
+            console.log('lol')
+            // create container for tasks
+            //const defaultTasks = NodeFac('default-tasks', 'div', '.def-nav-con').crtNode();
+            // display tasks in sidebar
+            taskList(allTasks, '.tasks-container-overview');
+            // dltClassEle('.icon-chevron');
             // dltNode('#icon-chevron-up');
             // dltNode('#icon-chevron-down');
-            crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', defH1Con);
-            crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
+            // crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', defH1Con);
+            // crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
             //crtChevronDown(ChevronDown, 'icon-chevron', 'icon-chevron-down', prjH1Con);
         }
     })
@@ -99,6 +107,8 @@ const crtTskForm = () => {
 }
 
 const crtPrjForm = () => {
+        // create a new project
+
         //modal - create dialog
         const inputModal = NodeFac('dialog', 'dialog', '#content').crtNode();
         inputModal.setAttribute('id', 'ipt-dialog');
@@ -136,6 +146,7 @@ const crtPrjForm = () => {
             if (inputTitle.value === '') {
                 return
             } else {
+                console.log(allProjects);
                 // if validation is passed then create new task object
                 addPrjObj(inputTitle.value);
                 dltNode('#ipt-dialog');
@@ -143,10 +154,14 @@ const crtPrjForm = () => {
                 // display tasks in sidebar
                 /* const crtPrjsTsk = NodeFac('projects-tasks', 'div', '.prj-nav-con').crtNode();
                 projectsList(allProjects, '.projects-tasks'); */
-                dltClassEle('.icon-chevron');
-                crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', defH1Con);
-                crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
+                // dltClassEle('.icon-chevron');
+                // crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', defH1Con);
+                // crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
                 //crtChevronDown(ChevronDown, 'icon-chevron', 'icon-chevron-down', prjH1Con);
+                // create container for prjects 
+                const defaultProjects = NodeFac('projects-tasks', 'div', '.prj-nav-con').crtNode();
+                // display tasks in sidebar
+                projectsList(allProjects, '.projects-tasks');
 
             }
         })
