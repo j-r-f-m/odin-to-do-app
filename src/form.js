@@ -1,8 +1,5 @@
 // create from to create task
-import { 
-    NodeFac, dltNode, taskList, crtChevronDownDef, crtChevronDownPrj, projectsList,
-    crtDltBtn,
-} from "./dom";
+import { NodeFac, dltNode, tskListByPrj, projectsList } from "./dom";
 import { addTaskObj, addPrjObj, allProjects, allTasks } from './data';
 
 import ChevronDown from './images/chevron-down.svg';
@@ -70,7 +67,7 @@ const crtTskForm = () => {
     const confirmBtn = NodeFac('btn', 'input', '.input-form', 'Confirm').crtNode();
     confirmBtn.setAttribute('type', 'submit');
 
-    confirmBtn.addEventListener('click', () => {
+    confirmBtn.addEventListener('click', (e) => {
         // Form validation
         if (inputTitle.value === '') {
             return
@@ -82,17 +79,17 @@ const crtTskForm = () => {
             return
         } else {
             // if validation is passed then create new task object
-            addTaskObj(inputTitle.value, inputDescr.value, inputDue.value, inputProject.value);
+            const newTsk = addTaskObj(inputTitle.value, inputDescr.value, inputDue.value, inputProject.value);
             // delete old dialog
             dltNode('#ipt-dialog');
             dltNode('.default-tasks');
             dltNode('.tasks-container');
-            console.log(allTasks);
-            console.log('lol')
+            // console.log(allTasks);
+            // console.log('lol')
             // create container for tasks
             //const defaultTasks = NodeFac('default-tasks', 'div', '.def-nav-con').crtNode();
-            // display tasks in sidebar
-            taskList(allTasks, '.tasks-container-overview');
+            // display tasks 
+            tskListByPrj(allTasks, newTsk.project);
             // dltClassEle('.icon-chevron');
             // dltNode('#icon-chevron-up');
             // dltNode('#icon-chevron-down');

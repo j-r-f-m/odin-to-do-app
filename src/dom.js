@@ -153,16 +153,19 @@ const setDefaultPrj = () => {
 
 const crtPrjsBtn = (nameClass, typeOfElement, parent, txt, idOfEle) => {
     // create the projects elements in the side bar -> open project overview 
+
     // with the last argument the position of the project in the allProjects array
     // is passed and can be used with the event-argument
     const prj = NodeFac(nameClass, typeOfElement, parent, txt, idOfEle).crtNode();
     prj.id = idOfEle;
     prj.addEventListener('click', (e) => {
         //console.log(e.target.textContent)
-        tskListByPrj(allTasks, '.tasks-container-overview', e.target.textContent)
+        
         dltNode('.tasks-container-overview');
+        // create container that holds the tasks corresponding to a project
         taskOverview(e);
-        taskList(allTasks, '.tasks-container-overview');
+        tskListByPrj(allTasks, e.target.textContent)
+        //taskList(allTasks, '.tasks-container-overview');
         // create tasks container
         //NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
     })
@@ -199,7 +202,7 @@ const crtDltBtnPrj = (source, nameOfClass, nameOfId, parent, nodeToDlt, nodeToDl
 
 // remove task overview of corresponding porject when the project gets deleted
 const rmvTskOver = (e) => {
-    console.log(e.target.parentElement.firstChild.textContent);
+    //console.log(e.target.parentElement.firstChild.textContent);
     dltNode(`#${e.target.parentElement.firstChild.textContent}`);
 }
 
@@ -240,13 +243,21 @@ const taskList = (arr, parent) => {
     
 }
 
-const tskListByPrj = (arr, parent, projectName) => {
+const tskListByPrj = (arr, projectName) => {
+    // create the tasklist corresponding to a project
+    // iterate over the allTasks array and display the tasks corresponding to the project
     console.log(projectName)
+    // create the div that holds the tasks -> its needed to delete tasks
+    const tasksContainer =  NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
     
     for (let i = 0; i < arr.length; i++) {
         //console.log(arr[i].title)
         if (arr[i].project === projectName) {
             console.log('yes');
+            // create the task-div that holds task and dlt-button
+            const tempTaskCon = NodeFac(`tasks-container-${i}`, 'div', '.tasks-container').crtNode();
+            // display the title of the task and the due date
+            const newTask = NodeFac('task', 'div', '.tasks-container', `${arr[i].title} - ${arr[i].dueDate}`).crtNode();
         }
     }
 }
@@ -270,7 +281,7 @@ export {
     NodeFac,
     dltNode,
     IconFac,
-    taskList,
+    tskListByPrj,
     projectsList,
     crtChevronDownDef,
     crtChevronUpDef,

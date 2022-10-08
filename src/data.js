@@ -31,7 +31,8 @@ const addTaskObj = (title, descr, dueDate, project) => {
     const tempTask = TaskFac(title, descr, dueDate, project);
     allTasks.push(tempTask)
     console.log(allTasks);
-
+    
+    return tempTask
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // If task has same name dont add to array
 }
