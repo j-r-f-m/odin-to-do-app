@@ -3,7 +3,7 @@ import Edit from "./images/pencil.svg";
 
 import { taskOverview } from './displayTask';
 import { allTasks, allProjects, rmvTsk, rmvEle, taskCount, rmvTskByPrj } from "./data";
-import { crtPrjForm, crtTskForm } from "./form.js";
+import { crtPrjForm, crtTskForm, editTskForm } from "./form.js";
 
 
 // dom manipulation
@@ -170,8 +170,13 @@ const crtDltBtnTsk = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => 
 
 const crtEditBtnTsk = (source, nameOfClass, nameOfId, parent) => {
     const editIcon = IconFac(Edit, nameOfClass, nameOfId, parent).crtIcon();
-    editIcon.addEventListener('click', () => {
-        console.log('edit');
+    editIcon.addEventListener('click', (e) => {
+
+        dltClassEle('.dialog');
+        console.log(e.target.parentElement.id)
+        editTskForm(e);
+        //setDefaultPrj();
+        console.log(allTasks);
     })
 }
 

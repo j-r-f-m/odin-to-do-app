@@ -58,6 +58,19 @@ const addPrjObj = (title) => {
     allProjects.push(tempPrj)
 }
 
+const editTskObj = (idxOfObj,editTitle, editDescr, editDueDate, editProject) => {
+    // edit task object
+    // access object user wants to edit with the passed index
+    console.log(allTasks)
+    console.log(allTasks[idxOfObj])
+
+    allTasks[idxOfObj].title = editTitle;
+    allTasks[idxOfObj].descr = editDescr;
+    allTasks[idxOfObj].dueDate = editDueDate;
+    allTasks[idxOfObj].project = editProject;
+    return allTasks[idxOfObj];
+}
+
 const rmvEle = (array, nameOfEle) => {
     console.log('array: ')
     console.log(array)
@@ -91,7 +104,7 @@ const rmvTskByPrj = (array, title) => {
 }
 
 const idxOfObj = (array, identifier) => {
-    // get array index of the object
+    // get array index of the object by id
     const testfunc = (ele) => ele.id === identifier;
     const idxObj = array.findIndex(testfunc);
     return idxObj; 
@@ -110,5 +123,6 @@ export {
     increasePrjsCount,
     idxOfObj,
     rmvTskByPrj,
+    editTskObj,
     taskCount
 }
