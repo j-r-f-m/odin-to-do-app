@@ -1,5 +1,5 @@
 import { NodeFac, crtPlusBtnTsk, crtDltBtn, } from "./dom";
-import { allProjects } from "./data";
+import { allProjects, idxOfObj } from "./data";
 import ImgClose from "./images/close.svg";
 import Plus from "./images/plus.svg"
 // displays task to a corresponding project
@@ -12,9 +12,21 @@ const taskOverview = (e) => {
         // headgin container
         const headCon = NodeFac('tsk-heading-con', 'div', '.tasks-container-overview').crtNode();
         // index of object clicked in the allProjects-array
-        const idx = parseFloat(e.target.id);
+        // the index is in the parent id of the clicked project button in a string
+        // string needs to cleaned of non numeric characters
+
+        // id of the project-object
+        console.log(e.target.parentElement.id)
+        let idStr = e.target.parentElement.id;
+        idStr = idStr.replace(/\D/g,'');
+        // conver to int
+        let idInt = parseInt(idStr)
+        console.log(typeof(idInt))
+
+        const idx = idxOfObj(allProjects, idInt);
+        console.log(idx)
         // ad id
-        tskCon.id = `${allProjects[idx].title}`;
+        tskCon.id = `task-overview-${allProjects[idx].title}`;
         //tasks-heading
         const tskH1 = NodeFac('tasks-h1','h1','.tsk-heading-con', `${allProjects[idx].title}`).crtNode();
         // container that holds the close and the add buttons

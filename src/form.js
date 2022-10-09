@@ -1,6 +1,6 @@
 // create from to create task
 import { NodeFac, dltNode, tskListByPrj, projectsList } from "./dom";
-import { addTaskObj, addPrjObj, allProjects, allTasks } from './data';
+import { addTaskObj, addPrjObj, allProjects, allTasks, increaseTaskCount, increasePrjsCount } from './data';
 
 import ChevronDown from './images/chevron-down.svg';
 import ChevronUp from './images/chevron-up.svg';
@@ -90,6 +90,8 @@ const crtTskForm = () => {
             //const defaultTasks = NodeFac('default-tasks', 'div', '.def-nav-con').crtNode();
             // display tasks 
             tskListByPrj(allTasks, newTsk.project);
+            increaseTaskCount();
+            //console.log(taskCount);
             // dltClassEle('.icon-chevron');
             // dltNode('#icon-chevron-up');
             // dltNode('#icon-chevron-down');
@@ -143,22 +145,22 @@ const crtPrjForm = () => {
             if (inputTitle.value === '') {
                 return
             } else {
+
+                console.log('allProjects')
                 console.log(allProjects);
+
+
                 // if validation is passed then create new task object
                 addPrjObj(inputTitle.value);
                 dltNode('#ipt-dialog');
                 dltNode('.projects-tasks');
-                // display tasks in sidebar
-                /* const crtPrjsTsk = NodeFac('projects-tasks', 'div', '.prj-nav-con').crtNode();
-                projectsList(allProjects, '.projects-tasks'); */
-                // dltClassEle('.icon-chevron');
-                // crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', defH1Con);
-                // crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
-                //crtChevronDown(ChevronDown, 'icon-chevron', 'icon-chevron-down', prjH1Con);
+
                 // create container for prjects 
                 const defaultProjects = NodeFac('projects-tasks', 'div', '.prj-nav-con').crtNode();
                 // display tasks in sidebar
                 projectsList(allProjects, '.projects-tasks');
+                // increase projects count -> next project can have a unique identifer
+                increasePrjsCount();
 
             }
         })

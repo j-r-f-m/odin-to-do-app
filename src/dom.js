@@ -1,9 +1,8 @@
-import ChevronDown from './images/chevron-down.svg';
-import ChevronUp from './images/chevron-up.svg';
 import ImgClose from "./images/close.svg";
+import Edit from "./images/pencil.svg";
 
 import { taskOverview } from './displayTask';
-import { allTasks, allProjects, rmvEle } from "./data";
+import { allTasks, allProjects, rmvTsk, rmvEle, taskCount, rmvTskByPrj } from "./data";
 import { crtPrjForm, crtTskForm } from "./form.js";
 
 
@@ -45,9 +44,19 @@ const dltClassEle = (nameOfClass) => {
 
 const dltNode = (selector) => {
     // check if element exists befor trying to delete it
+
+
     if (document.querySelector(selector)) {
         // delete node
         const node = document.querySelector(selector);
+        node.remove();
+    }
+}
+
+const dltNodeById = (id) => {
+    if (document.getElementById(id)) {
+        // delete node
+        const node = document.getElementById(id);
         node.remove();
     }
 }
@@ -69,6 +78,7 @@ const crtPlusBtnTsk = (source, nameOfClass, nameOfId, parent) => {
         dltClassEle('.dialog');
         crtTskForm();
         setDefaultPrj();
+        console.log(allTasks);
 
     })
 }
@@ -81,19 +91,19 @@ const setDefaultPrj = () => {
     const selectPrjIpt = document.getElementById('project')
     // select header of tasks overview to get title
     const prjName = document.querySelector('.tasks-h1')
-    console.log(prjName)
+    
     selectPrjIpt.value = prjName.textContent;
 }
 
 const crtPrjsBtn = (nameClass, typeOfElement, parent, txt, idOfEle) => {
     // create the projects elements in the side bar -> open project overview 
 
+
     // with the last argument the position of the project in the allProjects array
     // is passed and can be used with the event-argument
     const prj = NodeFac(nameClass, typeOfElement, parent, txt, idOfEle).crtNode();
-    prj.id = idOfEle;
+    //prj.id = idOfEle;
     prj.addEventListener('click', (e) => {
-        //console.log(e.target.textContent)
         
         dltNode('.tasks-container-overview');
         // create container that holds the tasks corresponding to a project
@@ -113,23 +123,29 @@ const crtDltBtn = (source, nameOfClass, nameOfId, parent, nodeToDlt) => {
     })
 }
 
-const crtDltBtnPrj = (source, nameOfClass, nameOfId, parent, nodeToDlt, nodeToDlt2, obj) => {
+const crtDltBtnPrj = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => {
     // x-shaped delete button for deleteing projects
     // not only the dom-elements have to be deleted, also the array containing 
     // all the projects has to be updated -> deleting corresponding element
     const closeIcon = IconFac(ImgClose, nameOfClass, nameOfId, parent).crtIcon();
+
+
     closeIcon.addEventListener('click', (e) => {
-        // delete node where the button is located
+        // delete container with project name and the delete button
         dltNode(nodeToDlt);
-        // delete projects container;
-        //dltNode(nodeToDlt2);
-        console.log(nodeToDlt2)
+  
         // remove project from array
-        rmvEle(allProjects, obj.title);
+        rmvTsk(allProjects, obj.id);
+        // remove tasks corresponding to project that will be removed
+        rmvTskByPrj(allTasks, obj.project);
         // remove task overview if it is opened
-        rmvTskOver(e);
+        // rmvTskOver(e);
+        dltNode('.tasks-container-overview')
         //dltNode(parent)
-        console.log('hi');
+        console.log('allProjects');
+        console.log(allProjects);
+        console.log('allTasks');
+        console.log(allTasks)
     })
 }
 
@@ -143,20 +159,27 @@ const crtDltBtnTsk = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => 
         dltNode(nodeToDlt);
         // delete projects container;
 
-        // remove project from array
-        rmvEle(allTasks, obj.title);
+        // remove task from array
+        
+        rmvTsk(allTasks, e.target.parentElement.id);
 
-
+        //console.log(document.querySelector('.tasks-h1').textContent)
         console.log(allTasks);
     })
 }
 
+const crtEditBtnTsk = (source, nameOfClass, nameOfId, parent) => {
+    const editIcon = IconFac(Edit, nameOfClass, nameOfId, parent).crtIcon();
+    editIcon.addEventListener('click', () => {
+        console.log('edit');
+    })
+}
 
 // remove task overview of corresponding porject when the project gets deleted
-const rmvTskOver = (e) => {
-    //console.log(e.target.parentElement.firstChild.textContent);
-    dltNode(`#${e.target.parentElement.firstChild.textContent}`);
-}
+// const rmvTskOver = (e) => {
+    
+//     dltNodeById(`task-overview-${e.target.parentElement.firstChild.textContent}`);
+// }
 
 
 //const addPrj = IconFac();
@@ -177,17 +200,20 @@ const IconFac = (source, nameOfClass, nameOfId, parent) => {
 const tskListByPrj = (arr, projectName) => {
     // create the tasklist corresponding to a project
     // iterate over the allTasks array and display the tasks corresponding to the project
-    console.log(projectName)
+
     // create the div that holds the tasks -> its needed to delete tasks
     const tasksContainer =  NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
     
     for (let i = 0; i < arr.length; i++) {
-        //console.log(arr[i].title)
+
         if (arr[i].project === projectName) {
-            console.log('yes');
+            
             // create the task-div that holds task and dlt-button
             const tempTaskCon = NodeFac(`tasks-container-${i}`, 'div', '.tasks-container').crtNode();
             tempTaskCon.classList.add('tsks-con');
+            tempTaskCon.id = `${arr[i].id}`;
+            // create Edit Button
+            crtEditBtnTsk(Edit, 'edit', 'icon-edit', tempTaskCon, `.tasks-container-${i}`);
             // display the title of the task and the due date
             const newTask = NodeFac('task', 'div', `.tasks-container-${i}`, `${arr[i].title} - ${arr[i].dueDate}`).crtNode();
             // create delete Button that deletes html element and objects in allPrjs. array 
@@ -202,10 +228,12 @@ const projectsList = (arr, parent) => {
         // create the project-div that holds project and dlt-button
         const tempPrjCon = NodeFac(`projects-container-${i}`, 'div', '.projects-tasks').crtNode();
         tempPrjCon.classList.add('projects-container');
+        tempPrjCon.id = `prj-${arr[i].id}`;
+
         // create project div -> open overview containing corresponding tasks 
         crtPrjsBtn('project', 'div', `.projects-container-${i}`, `${arr[i].title}`, `${i}`);
         // create delete Button that deletes html element and objects in allPrjs. array 
-        crtDltBtnPrj(ImgClose, 'close', 'icon-close', tempPrjCon, `.projects-container-${i}`, '.tasks-container-overview', arr[i]);
+        crtDltBtnPrj(ImgClose, 'close', 'icon-close', tempPrjCon, `.projects-container-${i}`,  arr[i]);
     }
 }
 

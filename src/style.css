@@ -87,10 +87,11 @@ body {
 	height: 1rem;
 }
 
-.tsks-con {
-	margin: 0.5;
+.task{
+	margin: 0.5rem 0.5rem 0.5rem 0.5rem;
 	padding: 0.5rem;
 	height: 1rem;
+
 }
 
 .project {
@@ -112,16 +113,17 @@ body {
 	padding: 0.5rem 0 0.5rem 0;
 }
 
-.icon-chevron, .icon-chevron-down , #icon-close, #icon-plus{
+/* -------------------- icons ----------------------------------- */
+
+#icon-close, #icon-plus, #icon-edit{
 	padding: 0.5rem;
 	background-color: grey;
 	height: 1rem;
 	margin-left: 0.5rem;
 }
 
-.icon-chevron:hover, .icon-chevron:focus, #icon-close:hover, #icon-close:focus, 
-#icon-plus:hover, #icon-plus:focus
- {
+#icon-close:hover, #icon-close:focus, #icon-plus:hover, #icon-plus:focus,
+#icon-edit:hover, #icon-edit:focus {
 	background-color: lightgrey;
 }
 
@@ -131,6 +133,10 @@ body {
 
 .tsk-heading-con {
 	margin: 0.5rem;
+}
+
+.tsks-con > img {
+	margin-right: 0.5rem;
 }
 
 /* ----------------------------- layout ------------------ */
