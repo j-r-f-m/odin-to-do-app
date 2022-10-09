@@ -81,12 +81,22 @@ body {
 	margin-top: 5rem;
 }
 
-
-.project, .task  {
-	height: 1rem;
-	min-width: 7rem;
+.project {
 	margin: 0.5rem 0 0.5rem 0;
 	padding: 0.5rem 0 0.5rem 0.5rem;
+	height: 1rem;
+}
+
+.tsks-con {
+	margin: 0.5;
+	padding: 0.5rem;
+	height: 1rem;
+}
+
+.project {
+
+	min-width: 7rem;
+
 }
 
 .project:hover, .project:focus, .task:hover, .task:focus {
@@ -162,11 +172,12 @@ body {
 	flex-direction: column;
 }
 
-.def-h1-con, .prj-h1-con, .tsk-heading-con, .projects-container {
+.def-h1-con, .prj-h1-con, .tsk-heading-con, .projects-container, .tsks-con  {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
+
 
 
 

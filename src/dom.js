@@ -53,72 +53,6 @@ const dltNode = (selector) => {
 }
 
 /* ---------------------------- Buttons --------------------------------------- */
-
-// create chevron up button
-const crtChevronUpDef = (source, nameOfClass, nameOfId, parent) => {
-
-    const tempChevron = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
-    // purpose of button ist to close the dropdown
-    // 1. delete list of task
-    // 2. delete button and add chevron up button
-    tempChevron.addEventListener('click', () => {
-        // delete task list
-        dltNode('.default-tasks');
-        crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', parent);
-        // delete chevron up
-        dltNode('#icon-chevron-up-def');
-
-    })
-}
-// create chevron down button for Default Projects
-const crtChevronDownDef = (source, nameOfClass, nameOfId, parent) => {
-
-    const tempChevron = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
-
-    tempChevron.addEventListener('click', () => {
-        // create container for tasks
-        const defaultTasks = NodeFac('default-tasks', 'div', '.def-nav-con').crtNode();
-        // display tasks in sidebar
-        taskList(allTasks, '.default-tasks');
-        // create "chevron-up" to minimize the default tasks, add id to delete it later
-        crtChevronUpDef(ChevronUp, 'icon-chevron', 'icon-chevron-up-def', parent);
-
-        // delete chevron down
-        dltNode('#icon-chevron-down-def');
-    })
-};
-
-const crtChevronUpPrj = (source, nameOfClass, nameOfId, parent) => {
-    const tempChevron = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
-    // purpose of button ist to close the dropdown
-    // 1. delete list of task
-    // 2. delete button and add chevron up button
-    tempChevron.addEventListener('click', () => {
-        // delete task list
-        dltNode('.projects-tasks');
-        crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', parent);
-        // delete chevron up
-        dltNode('#icon-chevron-up-prj');
-    })
-}
-
-// create chevron up button for Default Projects
-const crtChevronDownPrj = (source, nameOfClass, nameOfId, parent) => {
-
-    const tempChevron = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
-    tempChevron.addEventListener('click', () => {
-        // create container for tasks
-        const defaultProjects = NodeFac('projects-tasks', 'div', '.prj-nav-con').crtNode();
-        // display tasks in sidebar
-        projectsList(allProjects, '.projects-tasks');
-        // create "chevron-up" to minimize the default tasks, add id to delete it later
-        crtChevronUpPrj(ChevronUp, 'icon-chevron', 'icon-chevron-up-prj', parent);
-
-        // delete chevron down
-        dltNode('#icon-chevron-down-prj');
-    })
-};
-
 const crtPlusBtnPrj = (source, nameOfClass, nameOfId, parent) => {
     // create plus button -> create new Project
     const tempPlus = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
@@ -199,6 +133,24 @@ const crtDltBtnPrj = (source, nameOfClass, nameOfId, parent, nodeToDlt, nodeToDl
     })
 }
 
+const crtDltBtnTsk = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => {
+    // x-shaped delete button for deleteing tasks
+    // not only the dom-elements have to be deleted, also the array containing 
+    // all the projects has to be updated -> deleting corresponding element
+    const closeIcon = IconFac(ImgClose, nameOfClass, nameOfId, parent).crtIcon();
+    closeIcon.addEventListener('click', (e) => {
+        // delete node where the button is located
+        dltNode(nodeToDlt);
+        // delete projects container;
+
+        // remove project from array
+        rmvEle(allTasks, obj.title);
+
+
+        console.log(allTasks);
+    })
+}
+
 
 // remove task overview of corresponding porject when the project gets deleted
 const rmvTskOver = (e) => {
@@ -222,27 +174,6 @@ const IconFac = (source, nameOfClass, nameOfId, parent) => {
     return { crtIcon }
 }
 
-const taskList = (arr, parent) => {
-    // display all tasks 
-    // create the div that holds the tasks 
-    const tasksContainer =  NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
-
-    for (let i = 0; i < arr.length; i++) {
-
-        // create the project-div that holds project and dlt-button
-        const tempTaskCon = NodeFac(`tasks-container-${i}`, 'div', '.tasks-container').crtNode();
-
-        const newTask = NodeFac('task', 'div', '.tasks-container', `${arr[i].title} - ${arr[i].dueDate}`).crtNode();
-        //tskCon.classList.add('ta-container');
-        // create project div -> open overview containing corresponding tasks 
-        //crtTsksBtn('task', 'div', `.projects-container-${i}`, `${arr[i].title}`, `${i}`);
-        // // create delete Button that deletes html element and objects in allPrjs. array 
-        // crtDltBtnPrj(ImgClose, 'close', 'icon-close', tempPrjCon, `.projects-container-${i}`, '.projects-tasks', arr[i]);
-        
-    }
-    
-}
-
 const tskListByPrj = (arr, projectName) => {
     // create the tasklist corresponding to a project
     // iterate over the allTasks array and display the tasks corresponding to the project
@@ -256,8 +187,11 @@ const tskListByPrj = (arr, projectName) => {
             console.log('yes');
             // create the task-div that holds task and dlt-button
             const tempTaskCon = NodeFac(`tasks-container-${i}`, 'div', '.tasks-container').crtNode();
+            tempTaskCon.classList.add('tsks-con');
             // display the title of the task and the due date
-            const newTask = NodeFac('task', 'div', '.tasks-container', `${arr[i].title} - ${arr[i].dueDate}`).crtNode();
+            const newTask = NodeFac('task', 'div', `.tasks-container-${i}`, `${arr[i].title} - ${arr[i].dueDate}`).crtNode();
+            // create delete Button that deletes html element and objects in allPrjs. array 
+            crtDltBtnTsk(ImgClose, 'close', 'icon-close', tempTaskCon, `.tasks-container-${i}`, '.tasks-container-overview', arr[i]);
         }
     }
 }
@@ -283,10 +217,6 @@ export {
     IconFac,
     tskListByPrj,
     projectsList,
-    crtChevronDownDef,
-    crtChevronUpDef,
-    crtChevronDownPrj,
-    crtChevronUpPrj,
     dltClassEle,
     crtDltBtn,
     crtPlusBtnPrj,
