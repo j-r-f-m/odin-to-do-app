@@ -23,20 +23,20 @@ const increasePrjsCount = () => {
 }
 
 // factory function that creates tasks
-const TaskFac = (title, descr, dueDate, project, id) => {
+const TaskFac = (title, descr, dueDate, project, id, priority) => {
     // the id is needed to keep track of our overall created tasks
     // the tasks will be deleted by the id
-    return {title, descr, dueDate, project, id}
+    return {title, descr, dueDate, project, id, priority}
 }
 
 // add task to global task array
-const addTaskObj = (title, descr, dueDate, project) => {
+const addTaskObj = (title, descr, dueDate, project, priority) => {
     // create a new task and push it into the global object
     // gets called by clicking the submit putton
 
     const taskId = taskCount;  
 
-    const tempTask = TaskFac(title, descr, dueDate, project, taskId);
+    const tempTask = TaskFac(title, descr, dueDate, project, taskId, priority);
     allTasks.push(tempTask)
     //console.log(allTasks);
     

@@ -28,8 +28,8 @@ const crtTskForm = () => {
     //description
     const labeDescr = NodeFac('label', 'label', '.input-form', 'Description').crtNode();
     labeDescr.setAttribute('for', 'description');
-    const inputDescr = NodeFac('input', 'input', '.input-form').crtNode();
-    inputDescr.setAttribute('type', 'text');
+    const inputDescr = NodeFac('textarea', 'textarea', '.input-form').crtNode();
+    //inputDescr.setAttribute('type', 'text');
     inputDescr.setAttribute('name', 'description');
     inputDescr.setAttribute('id', 'task-description');
     inputDescr.required = true;
@@ -37,10 +37,23 @@ const crtTskForm = () => {
     const labelDue = NodeFac('label', 'label', '.input-form', 'Due Date').crtNode();
     labelDue.setAttribute('for', 'due-date');
     const inputDue = NodeFac('input', 'input', '.input-form').crtNode();
-    inputDue.setAttribute('type', 'text');
+    inputDue.setAttribute('type', 'date');
     inputDue.setAttribute('name', 'due-date');
     inputDue.setAttribute('id', 'due-date');
     inputDue.required = true;
+    // Priority
+    const labelPri = NodeFac('label', 'label', '.input-form', 'Priority').crtNode();
+    labelPri.setAttribute('for', 'priority');
+    const selectPri = NodeFac('select', 'select', '.input-form').crtNode();
+    selectPri.setAttribute('name', 'priority');
+    const optHigh = NodeFac('option-priority', 'option', '.select', 'High').crtNode();
+    optHigh.setAttribute('value', 'High');
+    optHigh.setAttribute('selected','');
+    const optMedium = NodeFac('option-priority', 'option', '.select', 'Medium').crtNode();
+    optMedium.setAttribute('value', 'Medium');
+    const optLow = NodeFac('option-priority', 'option', '.select', 'Low').crtNode();
+    optLow.setAttribute('Value','Low');
+
     // Project
     const labelproject = NodeFac('label', 'label', '.input-form', 'Project: ').crtNode();
     labelproject.setAttribute('for', 'Project');
@@ -79,12 +92,14 @@ const crtTskForm = () => {
             return
         } else {
             // if validation is passed then create new task object
-            const newTsk = addTaskObj(inputTitle.value, inputDescr.value, inputDue.value, inputProject.value);
+            console.log(selectPri.options[selectPri.selectedIndex].value);
+            console.log(allTasks);
+            const newTsk = addTaskObj(inputTitle.value, inputDescr.value, inputDue.value, inputProject.value, selectPri.options[selectPri.selectedIndex].value);
             // delete old dialog
             dltNode('#ipt-dialog');
             dltNode('.default-tasks');
             dltNode('.tasks-container');
-
+            // create tasklist for specified project
             tskListByPrj(allTasks, newTsk.project);
             // increase task count when new task was created
             increaseTaskCount();
@@ -128,11 +143,11 @@ const editTskForm = (e) => {
     inputTitle.setAttribute('id', 'task-title');
     inputTitle.value = allTasks[idxOfObject].title;
     inputTitle.required = true;
-    //description
+    // description
     const labeDescr = NodeFac('label', 'label', '.input-form', 'Description').crtNode();
     labeDescr.setAttribute('for', 'description');
-    const inputDescr = NodeFac('input', 'input', '.input-form').crtNode();
-    inputDescr.setAttribute('type', 'text');
+    const inputDescr = NodeFac('textarea', 'textarea', '.input-form').crtNode();
+    //inputDescr.setAttribute('type', 'text');
     inputDescr.setAttribute('name', 'description');
     inputDescr.setAttribute('id', 'task-description');
     inputDescr.value = allTasks[idxOfObject].descr;
@@ -141,11 +156,24 @@ const editTskForm = (e) => {
     const labelDue = NodeFac('label', 'label', '.input-form', 'Due Date').crtNode();
     labelDue.setAttribute('for', 'due-date');
     const inputDue = NodeFac('input', 'input', '.input-form').crtNode();
-    inputDue.setAttribute('type', 'text');
+    inputDue.setAttribute('type', 'date');
     inputDue.setAttribute('name', 'due-date');
     inputDue.setAttribute('id', 'due-date');
     inputDue.value = allTasks[idxOfObject].dueDate;
     inputDue.required = true;
+    // priority
+    const labelPri = NodeFac('label', 'label', '.input-form', 'Priority').crtNode();
+    labelPri.setAttribute('for', 'priority');
+    const selectPri = NodeFac('select', 'select', '.input-form').crtNode();
+    selectPri.setAttribute('name', 'priority');
+    const optHigh = NodeFac('option-priority', 'option', '.select', 'High').crtNode();
+    optHigh.setAttribute('value', 'High');
+    const optMedium = NodeFac('option-priority', 'option', '.select', 'Medium').crtNode();
+    optMedium.setAttribute('value', 'Medium');
+    const optLow = NodeFac('option-priority', 'option', '.select', 'Low').crtNode();
+    optLow.setAttribute('Value','Low');
+    selectPri.value = allTasks[idxOfObject].priority;
+
     // Project
     const labelproject = NodeFac('label', 'label', '.input-form', 'Project: ').crtNode();
     labelproject.setAttribute('for', 'Project');
@@ -185,7 +213,7 @@ const editTskForm = (e) => {
             return
         } else {
             // if validation is passed then create new task object
-            const newTsk = editTskObj( idxOfObject, inputTitle.value, inputDescr.value, inputDue.value, inputProject.value);
+            const newTsk = editTskObj( idxOfObject, inputTitle.value, inputDescr.value, inputDue.value, inputProject.value, selectPri.options[selectPri.selectedIndex].value);
             //editTskObj
             // delete old dialog
             dltNode('#ipt-dialog');
