@@ -1,5 +1,5 @@
 // managa data
-import { NodeFac } from "./dom";
+
 // object that holds all tasks
 const allTasks = [];
 
@@ -46,6 +46,7 @@ const addTaskObj = (title, descr, dueDate, project, priority) => {
 }
 
 const PrjFact = (title, id) => {
+    // create project objects
     return {title, id}
 }
 
@@ -110,6 +111,57 @@ const idxOfObj = (array, identifier) => {
     return idxObj; 
 }
 
+// --------------------save tasks and projects to local storage ----------------
+
+
+
+const saveTolocalTsk = (array) => {
+
+    // save all projects to local storage
+    for (let i = 0; i < array.length; i++) {
+        console.log(array[i]);
+
+        localStorage.setItem(`${array[i].id}`, 
+            JSON.stringify({
+                'title': array[i].title,
+                'descr': array[i].descr,
+                'dueDate': array[i].dueDate,
+                'project': array[i].project,
+                'id': array[i].id,
+                'priority': array[i].priority,
+            }))
+    }
+}
+
+const saveTolocalPrj = (array) => {
+
+    // save all projects to local storage
+    for (let i = 0; i < array.length; i++) {
+        console.log(array[i]);
+
+        localStorage.setItem(`prj-${array[i].id}`, 
+            JSON.stringify({
+                'title': array[i].title,
+                'id': array[i].id,
+            }))
+    }
+}
+
+const dltFromLocalPrj = (e) => {
+    // remove project from local storage by id
+    localStorage.removeItem(e.target.parentElement.id);
+}
+
+const dltFromLocalTsk = (e) => {
+    // remove task from local storage by id
+    localStorage.removeItem(e.target.parentElement.id);
+}
+
+const dltFrmLocTskOver = () => {
+    // when a project is deleted also its tasks need to be deleted from local
+
+}
+
 export {
     allTasks,
     allProjects,
@@ -124,5 +176,9 @@ export {
     idxOfObj,
     rmvTskByPrj,
     editTskObj,
-    taskCount
+    taskCount,
+    saveTolocalPrj,
+    saveTolocalTsk,
+    dltFromLocalPrj,
+    dltFromLocalTsk,
 }

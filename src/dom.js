@@ -2,7 +2,7 @@ import ImgClose from "./images/close.svg";
 import Edit from "./images/pencil.svg";
 
 import { taskOverview } from './displayTask';
-import { allTasks, allProjects, rmvTsk, rmvEle, taskCount, rmvTskByPrj } from "./data";
+import { allTasks, allProjects, rmvTsk, rmvTskByPrj, dltFromLocalPrj, dltFromLocalTsk } from "./data";
 import { crtPrjForm, crtTskForm, editTskForm } from "./form.js";
 
 
@@ -83,6 +83,7 @@ const crtPlusBtnTsk = (source, nameOfClass, nameOfId, parent) => {
     })
 }
 
+
 const setDefaultPrj = () => {
     // get the project name from tasks-h1 and set it as default
     // in input field
@@ -146,8 +147,14 @@ const crtDltBtnPrj = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => 
         console.log(allProjects);
         console.log('allTasks');
         console.log(allTasks)
+
+
+        dltFromLocalPrj(e);
+
     })
 }
+
+
 
 const crtDltBtnTsk = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => {
     // x-shaped delete button for deleteing tasks
@@ -165,6 +172,8 @@ const crtDltBtnTsk = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => 
 
         //console.log(document.querySelector('.tasks-h1').textContent)
         console.log(allTasks);
+
+        dltFromLocalTsk(e);
     })
 }
 

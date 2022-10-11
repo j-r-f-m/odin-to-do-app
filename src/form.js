@@ -1,10 +1,6 @@
 // create from to create task
 import { NodeFac, dltNode, tskListByPrj, projectsList } from "./dom";
-import { addTaskObj, addPrjObj, allProjects, allTasks, increaseTaskCount, increasePrjsCount, idxOfObj, editTskObj } from './data';
-
-import ChevronDown from './images/chevron-down.svg';
-import ChevronUp from './images/chevron-up.svg';
-
+import { addTaskObj, addPrjObj, allProjects, allTasks, increaseTaskCount, increasePrjsCount, idxOfObj, editTskObj, saveTolocalPrj, saveTolocalTsk } from './data';
 
 const crtTskForm = () => {
     // create a new task
@@ -104,8 +100,13 @@ const crtTskForm = () => {
             // increase task count when new task was created
             increaseTaskCount();
 
+            // save tasks to local storage
+            saveTolocalTsk(allTasks);
         }
     })
+
+
+
 
     // show modal
     inputModal.showModal();
@@ -222,9 +223,11 @@ const editTskForm = (e) => {
 
             tskListByPrj(allTasks, newTsk.project);
             
-            console.log('after edit');
-            console.log(allTasks);
-            
+            // console.log('after edit');
+            // console.log(allTasks);
+
+            // save tasks to local storage
+            saveTolocalTsk(allTasks);
 
         }
     })
@@ -274,8 +277,8 @@ const crtPrjForm = () => {
                 return
             } else {
 
-                console.log('allProjects')
-                console.log(allProjects);
+                // console.log('allProjects')
+                // console.log(allProjects);
 
 
                 // if validation is passed then create new task object
@@ -290,11 +293,20 @@ const crtPrjForm = () => {
                 // increase projects count -> next project can have a unique identifer
                 increasePrjsCount();
 
+
+     
+                saveTolocalPrj(allProjects);
             }
         })
 
         inputModal.showModal();
 }
+
+
+
+
+
+
 
 export {
     crtTskForm,

@@ -1,5 +1,5 @@
 // create the "home"-page
-import { NodeFac, crtChevronDownDef, crtChevronDownPrj, crtPlusBtnPrj, dltNode,  } from "./dom";
+import { NodeFac, crtChevronDownDef, crtChevronDownPrj, crtPlusBtnPrj, dltNode, crtPlusBtnTsk,  } from "./dom";
 import { crtTskForm } from "./form";
 
 import ChevronDown from './images/chevron-down.svg';
@@ -22,38 +22,23 @@ const home = () => {
         ('heading-sidebar', 'h1', '.heading-container', "To Do's")
         .crtNode();
 
-    // create task btn
-    // const taskBtn = NodeFac
-    //     ('btn', 'button', '.sidebar-container', '+ Create Task')
-    //     .crtNode();
-    // taskBtn.setAttribute('id', 'create-taskBtn')
-    // taskBtn.addEventListener('click', () => {
-    //     dltNode('.dialog');
-    //     crtTskForm();
-    //     //dltNode('.tasks-container-overview');
-    // });
-
-    // create task nav container
-    // const defaultCon = NodeFac('def-nav-con', 'div', '.sidebar-container').crtNode();
-    // const defH1Con = NodeFac('def-h1-con', 'div', '.def-nav-con').crtNode();
-    // const defaultH1 = NodeFac('heading-default', 'h1', '.def-h1-con', 'Default').crtNode();
-    
-
-    // create chevron down button for default
-    //crtChevronDownDef(ChevronDown, 'icon-chevron', 'icon-chevron-down-def', defH1Con);
-
-    // create chevron down button for projects
-    // create project nav container
+    // Projects nav con
     const projectsCon = NodeFac('prj-nav-con', 'div', '.sidebar-container').crtNode();
+
+
+    // // personal -> all projects go into personal
+    // const persH1Con = NodeFac('pers-h1-con', 'div', '.prj-nav-con').crtNode();    
+    // const persH1 = NodeFac('heading-personal', 'h1', '.pers-h1-con', 'Projects').crtNode();
+    // // create plus button for adding new tasks
+    // crtPlusBtnTsk(Plus, 'icon', 'icon-plus', persH1Con);
+
+
+
+    // projects
     const prjH1Con = NodeFac('prj-h1-con', 'div', '.prj-nav-con').crtNode();    
     const projectH1 = NodeFac('heading-project', 'h1', '.prj-h1-con', 'Projects').crtNode();
     // create plus button for adding new projects
     crtPlusBtnPrj(Plus, 'icon', 'icon-plus', prjH1Con);
-    //create chevron down for projects 
-    // crtChevronDownPrj(ChevronDown, 'icon-chevron', 'icon-chevron-down-prj', prjH1Con);
-
-    
-
 }
 
 export {
