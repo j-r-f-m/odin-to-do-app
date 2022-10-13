@@ -97,12 +97,23 @@ const rmvTsk = (array, identifier) => {
     array.splice(idxObj, 1);
 }
 
-const rmvTskByPrj = (array, title) => {
-        // delete all tasks corresponding to an object
-        const testfunc = (ele) => ele.title === title;
-        const idxObj = array.findIndex(testfunc);
-        array.splice(idxObj, 1);
+const rmvTskByPrj = (array, projectName) => {
+    // delete all tasks corresponding to an object from allTasks array
+    console.log(projectName)
+    let i = 0;
+    while (i < array.length) {
+        if (array[i].project === projectName) {
+        array.splice(i, 1);
+        } else {
+        ++i;
+        }
+    }
+    console.log('allTasks');
+    console.log(allTasks);
+    return array;
 }
+
+
 
 const idxOfObj = (array, identifier) => {
     // get array index of the object by id
@@ -114,12 +125,11 @@ const idxOfObj = (array, identifier) => {
 // --------------------save tasks and projects to local storage ----------------
 
 
-
 const saveTolocalTsk = (array) => {
 
     // save all projects to local storage
     for (let i = 0; i < array.length; i++) {
-        console.log(array[i]);
+        //console.log(array[i]);
 
         localStorage.setItem(`${array[i].id}`, 
             JSON.stringify({
@@ -134,10 +144,9 @@ const saveTolocalTsk = (array) => {
 }
 
 const saveTolocalPrj = (array) => {
-
     // save all projects to local storage
     for (let i = 0; i < array.length; i++) {
-        console.log(array[i]);
+        //console.log(array[i]);
 
         localStorage.setItem(`prj-${array[i].id}`, 
             JSON.stringify({
@@ -157,8 +166,74 @@ const dltFromLocalTsk = (e) => {
     localStorage.removeItem(e.target.parentElement.id);
 }
 
-const dltFrmLocTskOver = () => {
-    // when a project is deleted also its tasks need to be deleted from local
+const dltFrmLocTskOver = (dltPrj) => {
+    // when a project is deleted in the sidebar its tasks also need to be deleted 
+    //from local storage
+    // console.log(allProjects);
+    // console.log(allTasks);
+    console.log('project name')
+    console.log(dltPrj)
+
+    console.log(localStorage)
+
+
+    // i is the key
+    let i = 0;
+    while (i <= localStorage.length) {
+        console.log(localStorage.getItem(i))
+        console.log('i' + i)
+
+        if (JSON.parse(localStorage.getItem(i)) === null) {
+            ++i;
+            
+        } else if (JSON.parse(localStorage.getItem(i)).project === dltPrj) {
+            console.log('ture')
+            console.log(JSON.parse(localStorage.getItem(i)).project)
+            localStorage.removeItem(i); 
+            ++i;
+        } else {
+            ++i;
+
+        }
+
+    }
+    console.log('allTasks');
+    console.log(allTasks);
+    
+                
+    
+    // let counter = localStorage.length;
+    // console.log(localStorage.length);
+    // for (let i = 0; i <localStorage.length; i++) {
+    //     console.log(localStorage.getItem(i))
+    //     if( JSON.parse(localStorage.getItem(i))!== null &&
+    //     JSON.parse(localStorage.getItem(i)).project === dltPrj) {
+    //         console.log('task of project -> dlt');
+    //         localStorage.removeItem(i);
+
+    //     } else {
+    //         console.log('not part of project');
+    //     }
+    //     console.log('allTasks')
+    //     console.log(allTasks)
+    // }
+    // let i = 0;
+    // while ( counter >= 0) {
+        
+    //     console.log(localStorage.getItem(i));
+    //     console.log('project we want to delete: ' + dltPrj);
+
+    //     if( JSON.parse(localStorage.getItem(i))!== null &&
+    //     JSON.parse(localStorage.getItem(i)).project === dltPrj ||
+    //     JSON.parse(localStorage.getItem(i)).title === dltPrj)
+    //         {
+    //             console.log(JSON.parse(localStorage.getItem(i)).project);
+    //             console.log(i)
+    //             localStorage.removeItem(i);
+    //         }
+    //     i++;
+    //     counter--;
+    // }
 
 }
 
@@ -181,4 +256,5 @@ export {
     saveTolocalTsk,
     dltFromLocalPrj,
     dltFromLocalTsk,
+    dltFrmLocTskOver,
 }

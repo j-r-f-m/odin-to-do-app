@@ -2,7 +2,7 @@ import ImgClose from "./images/close.svg";
 import Edit from "./images/pencil.svg";
 
 import { taskOverview } from './displayTask';
-import { allTasks, allProjects, rmvTsk, rmvTskByPrj, dltFromLocalPrj, dltFromLocalTsk } from "./data";
+import { allTasks, allProjects, rmvTsk, rmvTskByPrj, dltFromLocalPrj, dltFromLocalTsk, dltFrmLocTskOver } from "./data";
 import { crtPrjForm, crtTskForm, editTskForm } from "./form.js";
 
 
@@ -78,7 +78,7 @@ const crtPlusBtnTsk = (source, nameOfClass, nameOfId, parent) => {
         dltClassEle('.dialog');
         crtTskForm();
         setDefaultPrj();
-        console.log(allTasks);
+        //console.log(allTasks);
 
     })
 }
@@ -98,8 +98,7 @@ const setDefaultPrj = () => {
 
 const crtPrjsBtn = (nameClass, typeOfElement, parent, txt, idOfEle) => {
     // create the projects elements in the side bar -> open project overview 
-
-
+ 
     // with the last argument the position of the project in the allProjects array
     // is passed and can be used with the event-argument
     const prj = NodeFac(nameClass, typeOfElement, parent, txt, idOfEle).crtNode();
@@ -114,6 +113,8 @@ const crtPrjsBtn = (nameClass, typeOfElement, parent, txt, idOfEle) => {
         // create tasks container
         //NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
     })
+    console.log(allProjects);
+    console.log(allTasks);
 }
 
 const crtDltBtn = (source, nameOfClass, nameOfId, parent, nodeToDlt) => {
@@ -134,22 +135,25 @@ const crtDltBtnPrj = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => 
     closeIcon.addEventListener('click', (e) => {
         // delete container with project name and the delete button
         dltNode(nodeToDlt);
-  
+        console.log(obj.title)
         // remove project from array
         rmvTsk(allProjects, obj.id);
-        // remove tasks corresponding to project that will be removed
-        rmvTskByPrj(allTasks, obj.project);
+        // remove tasks corresponding to project that will be removed from allTasks
+        // array
+        rmvTskByPrj(allTasks, obj.title);
         // remove task overview if it is opened
         // rmvTskOver(e);
         dltNode('.tasks-container-overview')
         //dltNode(parent)
-        console.log('allProjects');
-        console.log(allProjects);
-        console.log('allTasks');
-        console.log(allTasks)
+        // console.log('allProjects');
+        // console.log(allProjects);
+        // console.log('allTasks');
+        // console.log(allTasks)
 
 
         dltFromLocalPrj(e);
+        //console.log(e.target.parentElement.firstChild.textContent)
+        dltFrmLocTskOver(e.target.parentElement.firstChild.textContent);
 
     })
 }
@@ -171,7 +175,7 @@ const crtDltBtnTsk = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => 
         rmvTsk(allTasks, e.target.parentElement.id);
 
         //console.log(document.querySelector('.tasks-h1').textContent)
-        console.log(allTasks);
+        //console.log(allTasks);
 
         dltFromLocalTsk(e);
     })
@@ -185,7 +189,7 @@ const crtEditBtnTsk = (source, nameOfClass, nameOfId, parent) => {
         console.log(e.target.parentElement.id)
         editTskForm(e);
         //setDefaultPrj();
-        console.log(allTasks);
+        //console.log(allTasks);
     })
 }
 

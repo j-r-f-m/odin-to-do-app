@@ -88,8 +88,8 @@ const crtTskForm = () => {
             return
         } else {
             // if validation is passed then create new task object
-            console.log(selectPri.options[selectPri.selectedIndex].value);
-            console.log(allTasks);
+            // console.log(selectPri.options[selectPri.selectedIndex].value);
+            // console.log(allTasks);
             const newTsk = addTaskObj(inputTitle.value, inputDescr.value, inputDue.value, inputProject.value, selectPri.options[selectPri.selectedIndex].value);
             // delete old dialog
             dltNode('#ipt-dialog');
@@ -102,7 +102,10 @@ const crtTskForm = () => {
 
             // save tasks to local storage
             saveTolocalTsk(allTasks);
+
         }
+        console.log('allTasks');
+        console.log(allTasks);
     })
 
 
