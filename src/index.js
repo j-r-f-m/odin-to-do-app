@@ -1,10 +1,11 @@
 import './style.css';
 
 import { home } from './home'
-import { allTasks } from './data'
+import { allTasks, loadData } from './data'
 
 (() => {
     home();
     allTasks;
+    loadData();
 
 })();

@@ -2,7 +2,7 @@ import ImgClose from "./images/close.svg";
 import Edit from "./images/pencil.svg";
 
 import { taskOverview } from './displayTask';
-import { allTasks, allProjects, rmvTsk, rmvTskByPrj, dltFromLocalPrj, dltFromLocalTsk, dltFrmLocTskOver } from "./data";
+import { allTasks, allProjects, rmvTsk, rmvTskByPrj, dltFromLocalPrj, dltFromLocalTsk } from "./data";
 import { crtPrjForm, crtTskForm, editTskForm } from "./form.js";
 
 
@@ -44,8 +44,6 @@ const dltClassEle = (nameOfClass) => {
 
 const dltNode = (selector) => {
     // check if element exists befor trying to delete it
-
-
     if (document.querySelector(selector)) {
         // delete node
         const node = document.querySelector(selector);
@@ -113,7 +111,9 @@ const crtPrjsBtn = (nameClass, typeOfElement, parent, txt, idOfEle) => {
         // create tasks container
         //NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
     })
+    console.log('allProjects');
     console.log(allProjects);
+    console.log('allTasks');
     console.log(allTasks);
 }
 
@@ -145,16 +145,8 @@ const crtDltBtnPrj = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => 
         // rmvTskOver(e);
         dltNode('.tasks-container-overview')
         //dltNode(parent)
-        // console.log('allProjects');
-        // console.log(allProjects);
-        // console.log('allTasks');
-        // console.log(allTasks)
-
 
         dltFromLocalPrj(e);
-        //console.log(e.target.parentElement.firstChild.textContent)
-        dltFrmLocTskOver(e.target.parentElement.firstChild.textContent);
-
     })
 }
 
@@ -186,7 +178,7 @@ const crtEditBtnTsk = (source, nameOfClass, nameOfId, parent) => {
     editIcon.addEventListener('click', (e) => {
 
         dltClassEle('.dialog');
-        console.log(e.target.parentElement.id)
+        //console.log(e.target.parentElement.id)
         editTskForm(e);
         //setDefaultPrj();
         //console.log(allTasks);

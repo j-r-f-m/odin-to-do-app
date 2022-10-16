@@ -16,16 +16,14 @@ const taskOverview = (e) => {
         // string needs to cleaned of non numeric characters
 
         // id of the project-object
-        //console.log(e.target.parentElement.id)
         let idStr = e.target.parentElement.id;
         idStr = idStr.replace(/\D/g,'');
         // conver to int
         let idInt = parseInt(idStr)
-        //console.log(typeof(idInt))
+  
 
         const idx = idxOfObj(allProjects, idInt);
-        //console.log(idx)
-        // ad id
+        // add id
         tskCon.id = `task-overview-${allProjects[idx].title}`;
         //tasks-heading
         const tskH1 = NodeFac('tasks-h1','h1','.tsk-heading-con', `${allProjects[idx].title}`).crtNode();

@@ -54,6 +54,8 @@ const addPrjObj = (title) => {
     // create a new project and push it into the allProjects-array
     // gets called by clicking the submit putton
 
+    //console.log('adding project');
+
     const prjId = prjsCount;
     const tempPrj = PrjFact(title, prjsCount);
     allProjects.push(tempPrj)
@@ -72,7 +74,9 @@ const editTskObj = (idxOfObj,editTitle, editDescr, editDueDate, editProject) => 
     return allTasks[idxOfObj];
 }
 
-const rmvEle = (array, nameOfEle) => {
+
+// LÖSCHEN ????????????????????? Überprüfen ob das raus kann
+/* const rmvEle = (array, nameOfEle) => {
     console.log('array: ')
     console.log(array)
     console.log('name of Ele: ' + nameOfEle)
@@ -82,7 +86,7 @@ const rmvEle = (array, nameOfEle) => {
     const idxObj = array.findIndex(testfunc);
     console.log(idxObj)
     array.splice(idxObj, 1);
-}
+} */
 
 const rmvTsk = (array, identifier) => {
     // delete task that user clicked on by id
@@ -103,7 +107,14 @@ const rmvTskByPrj = (array, projectName) => {
     let i = 0;
     while (i < array.length) {
         if (array[i].project === projectName) {
+        // remove from local storage
+        let idOfTsk = array[i].id;
+        console.log(idOfTsk);
+        // remove task from allTask array and from local storage
+        localStorage.removeItem(array[i].id);
         array.splice(i, 1);
+
+
         } else {
         ++i;
         }
@@ -112,8 +123,6 @@ const rmvTskByPrj = (array, projectName) => {
     console.log(allTasks);
     return array;
 }
-
-
 
 const idxOfObj = (array, identifier) => {
     // get array index of the object by id
@@ -126,11 +135,10 @@ const idxOfObj = (array, identifier) => {
 
 
 const saveTolocalTsk = (array) => {
-
-    // save all projects to local storage
+    // save task to local storage using the id
     for (let i = 0; i < array.length; i++) {
-        //console.log(array[i]);
-
+        // local storage saves in the JSON data format
+        // the objects need to be turned into strings
         localStorage.setItem(`${array[i].id}`, 
             JSON.stringify({
                 'title': array[i].title,
@@ -146,8 +154,7 @@ const saveTolocalTsk = (array) => {
 const saveTolocalPrj = (array) => {
     // save all projects to local storage
     for (let i = 0; i < array.length; i++) {
-        //console.log(array[i]);
-
+        // turn object to string
         localStorage.setItem(`prj-${array[i].id}`, 
             JSON.stringify({
                 'title': array[i].title,
@@ -166,75 +173,19 @@ const dltFromLocalTsk = (e) => {
     localStorage.removeItem(e.target.parentElement.id);
 }
 
-const dltFrmLocTskOver = (dltPrj) => {
-    // when a project is deleted in the sidebar its tasks also need to be deleted 
-    //from local storage
-    // console.log(allProjects);
-    // console.log(allTasks);
-    console.log('project name')
-    console.log(dltPrj)
-
-    console.log(localStorage)
-
-
-    // i is the key
-    let i = 0;
-    while (i <= localStorage.length) {
-        console.log(localStorage.getItem(i))
-        console.log('i' + i)
-
-        if (JSON.parse(localStorage.getItem(i)) === null) {
-            ++i;
-            
-        } else if (JSON.parse(localStorage.getItem(i)).project === dltPrj) {
-            console.log('ture')
-            console.log(JSON.parse(localStorage.getItem(i)).project)
-            localStorage.removeItem(i); 
-            ++i;
-        } else {
-            ++i;
-
-        }
-
-    }
+const loadData = () => {
+    console.log('refresh');
+    console.log('local Storage')
+    console.log(localStorage);
     console.log('allTasks');
     console.log(allTasks);
-    
-                
-    
-    // let counter = localStorage.length;
-    // console.log(localStorage.length);
-    // for (let i = 0; i <localStorage.length; i++) {
-    //     console.log(localStorage.getItem(i))
-    //     if( JSON.parse(localStorage.getItem(i))!== null &&
-    //     JSON.parse(localStorage.getItem(i)).project === dltPrj) {
-    //         console.log('task of project -> dlt');
-    //         localStorage.removeItem(i);
+    console.log('allProjects');
+    console.log(allProjects);
 
-    //     } else {
-    //         console.log('not part of project');
-    //     }
-    //     console.log('allTasks')
-    //     console.log(allTasks)
-    // }
-    // let i = 0;
-    // while ( counter >= 0) {
-        
-    //     console.log(localStorage.getItem(i));
-    //     console.log('project we want to delete: ' + dltPrj);
-
-    //     if( JSON.parse(localStorage.getItem(i))!== null &&
-    //     JSON.parse(localStorage.getItem(i)).project === dltPrj ||
-    //     JSON.parse(localStorage.getItem(i)).title === dltPrj)
-    //         {
-    //             console.log(JSON.parse(localStorage.getItem(i)).project);
-    //             console.log(i)
-    //             localStorage.removeItem(i);
-    //         }
-    //     i++;
-    //     counter--;
-    // }
-
+    for (let i = 0; i < localStorage.length; i++) {
+        console.log((localStorage[i]));
+        console.log(localStorage.getItem('prj-0'))
+    }
 }
 
 export {
@@ -244,7 +195,7 @@ export {
     addTaskObj,
     PrjFact, 
     addPrjObj,
-    rmvEle,
+    //rmvEle,
     rmvTsk,
     increaseTaskCount,
     increasePrjsCount,
@@ -256,5 +207,6 @@ export {
     saveTolocalTsk,
     dltFromLocalPrj,
     dltFromLocalTsk,
-    dltFrmLocTskOver,
+    loadData,
+    
 }

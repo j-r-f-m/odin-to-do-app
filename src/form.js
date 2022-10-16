@@ -121,15 +121,15 @@ const editTskForm = (e) => {
 
     // id of task object that user wants to edit
     const idObjStr = e.target.parentElement.id;
-    console.log(idObjStr)
+    //console.log(idObjStr)
     
     // conver from string to int
     const idObjInt = parseInt(idObjStr);
-    console.log(typeof(idObjInt))
+    //console.log(typeof(idObjInt))
 
     // get index of object that user wants to edit
     const idxOfObject = idxOfObj(allTasks, idObjInt);
-    console.log(idxOfObject)
+    //console.log(idxOfObject)
 
     //modal - create dialog
     const inputModal = NodeFac('dialog', 'dialog', '#content').crtNode();
@@ -295,9 +295,6 @@ const crtPrjForm = () => {
                 projectsList(allProjects, '.projects-tasks');
                 // increase projects count -> next project can have a unique identifer
                 increasePrjsCount();
-
-
-     
                 saveTolocalPrj(allProjects);
             }
         })
