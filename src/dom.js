@@ -111,10 +111,10 @@ const crtPrjsBtn = (nameClass, typeOfElement, parent, txt, idOfEle) => {
         // create tasks container
         //NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
     })
-    console.log('allProjects');
+/*     console.log('allProjects');
     console.log(allProjects);
     console.log('allTasks');
-    console.log(allTasks);
+    console.log(allTasks); */
 }
 
 const crtDltBtn = (source, nameOfClass, nameOfId, parent, nodeToDlt) => {
@@ -247,7 +247,25 @@ const projectsList = (arr, parent) => {
     }
 }
 
+const projectsList2 = (arr) => {
+    //projectsList2 creates the projects in the sidebar from localStorage
+    // when page is refreshed or closed and then reopened
 
+    // create container for prjects 
+    const defaultProjects = NodeFac('projects-tasks', 'div', '.prj-nav-con').crtNode();
+    
+    for (let i = 0; i < arr.length; i++) {
+        // create the project-div that holds project and dlt-button
+        const tempPrjCon = NodeFac(`projects-container-${i}`, 'div', '.projects-tasks').crtNode();
+        tempPrjCon.classList.add('projects-container');
+        tempPrjCon.id = `prj-${arr[i].id}`;
+
+        // create project div -> open overview containing corresponding tasks 
+        crtPrjsBtn('project', 'div', `.projects-container-${i}`, `${arr[i].title}`, `${i}`);
+        // create delete Button that deletes html element and objects in allPrjs. array 
+        crtDltBtnPrj(ImgClose, 'close', 'icon-close', tempPrjCon, `.projects-container-${i}`,  arr[i]);
+    }
+}
 
 export {
     NodeFac,
@@ -255,6 +273,7 @@ export {
     IconFac,
     tskListByPrj,
     projectsList,
+    projectsList2,
     dltClassEle,
     crtDltBtn,
     crtPlusBtnPrj,

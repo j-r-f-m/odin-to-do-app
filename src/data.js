@@ -174,18 +174,42 @@ const dltFromLocalTsk = (e) => {
 }
 
 const loadData = () => {
-    console.log('refresh');
+    // repopulate allTasks and allProjects arrays by iterating over local storage
+
+/*     console.log('refresh');
     console.log('local Storage')
     console.log(localStorage);
     console.log('allTasks');
     console.log(allTasks);
     console.log('allProjects');
-    console.log(allProjects);
+    console.log(allProjects); */
+    
+    const keys = Object.keys(localStorage);
+    for (let key of keys) {
+        // check if localStorage object is project or task
+        if (key[0] === 'p') {
+            
+            const obj = JSON.parse(localStorage.getItem(key));
+            //console.log('project');
+            console.log(localStorage.getItem(key));
+            console.log(obj);
+            allProjects.push(obj);
 
-    for (let i = 0; i < localStorage.length; i++) {
-        console.log((localStorage[i]));
-        console.log(localStorage.getItem('prj-0'))
+        } else {
+            //console.log('task');
+            allTasks.push(JSON.parse(localStorage.getItem(key)));
+        }
+        // set task counter to keep id's unique
+        taskCount = allTasks.length;
+        prjsCount = allProjects.length;
+
+
     }
+
+    console.log('projects');
+    console.log(allProjects);
+    console.log('allTasks');
+    console.log(allTasks);
 }
 
 export {
