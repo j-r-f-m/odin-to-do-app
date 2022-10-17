@@ -1,6 +1,6 @@
 // create from to create task
 import { NodeFac, dltNode, tskListByPrj, projectsList } from "./dom";
-import { addTaskObj, addPrjObj, allProjects, allTasks, increaseTaskCount, increasePrjsCount, idxOfObj, editTskObj, saveTolocalPrj, saveTolocalTsk } from './data';
+import { addTaskObj, addPrjObj, allProjects, allTasks, increaseTaskCount, increasePrjsCount, idxOfObj, editTskObj, saveTolocalPrj, saveTolocalTsk, prjsCount, checkName } from './data';
 
 const crtTskForm = () => {
     // create a new task
@@ -275,6 +275,8 @@ const crtPrjForm = () => {
         const prjH1Con = document.querySelector('.prj-h1-con');
 
         confirmBtn.addEventListener('click', () => {
+
+            
             // Form validation
             if (inputTitle.value === '') {
                 return
@@ -284,7 +286,7 @@ const crtPrjForm = () => {
                 // console.log(allProjects);
 
 
-                // if validation is passed then create new task object
+                // if validation is passed then create new project object
                 addPrjObj(inputTitle.value);
                 dltNode('#ipt-dialog');
                 dltNode('.projects-tasks');
@@ -295,7 +297,12 @@ const crtPrjForm = () => {
                 projectsList(allProjects, '.projects-tasks');
                 // increase projects count -> next project can have a unique identifer
                 increasePrjsCount();
+                console.log('prjsCount form')
+                console.log(prjsCount)
+
+                // save to local storage
                 saveTolocalPrj(allProjects);
+
             }
         })
 

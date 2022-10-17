@@ -175,7 +175,7 @@ const dltFromLocalTsk = (e) => {
 
 const loadData = () => {
     // repopulate allTasks and allProjects arrays by iterating over local storage
-
+    // 
 /*     console.log('refresh');
     console.log('local Storage')
     console.log(localStorage);
@@ -184,33 +184,104 @@ const loadData = () => {
     console.log('allProjects');
     console.log(allProjects); */
     
+    // get all keys of objects that are in local storage
     const keys = Object.keys(localStorage);
     for (let key of keys) {
         // check if localStorage object is project or task
+        // the id of the projects in storage beginn with p
         if (key[0] === 'p') {
-            
+            // turn json string into js-object
             const obj = JSON.parse(localStorage.getItem(key));
             //console.log('project');
-            console.log(localStorage.getItem(key));
-            console.log(obj);
+            // console.log(localStorage.getItem(key));
+            // console.log(obj);
+            // push object from local storage into allProjects array
             allProjects.push(obj);
 
         } else {
-            //console.log('task');
+            // convert string to object and push it into allTasks array
             allTasks.push(JSON.parse(localStorage.getItem(key)));
         }
-        // set task counter to keep id's unique
-        taskCount = allTasks.length;
-        prjsCount = allProjects.length;
-
-
     }
+    // set task counter to keep id's unique
+    // taskCount = allTasks.length;
+    taskCount = nextId(allTasks);
+    prjsCount = nextId(allProjects);
 
+
+
+    console.log('prjsCount')
+    console.log(prjsCount)
     console.log('projects');
     console.log(allProjects);
     console.log('allTasks');
     console.log(allTasks);
 }
+
+const nextId = (array) => {
+    // in order to keep adding unique id's to the object we create, we need to
+    // keep increasing the id count. To achieve this we need to get the highest 
+    // id that is available in the allProjects or allTasks array
+
+    
+    console.log('array')
+    console.log(array)
+
+    if (array.length === 0) {
+        console.log('array length 0')
+        return 0;
+    } else {
+        // save id's of the objects in the given array
+        const idArray = [];
+
+        // get highest id
+        for (let i = 0; i < array.length; i++) {
+            idArray.push(array[i].id);
+            console.log('highest id')
+            console.log(idArray)
+        }
+
+
+        // get highest id-attribute of object in array
+        const maxVal = Math.max(...idArray);
+        console.log('maxVal');
+        console.log(maxVal);
+        return maxVal+1;
+    }
+
+
+}  
+
+// not finished !!!!!!!!!!!!!!!!! DOEES not work
+const checkName = (newName, array, inputTitleObj) => {
+    console.log(array);
+    // check if the project- or taskname has already been taken
+    // look if newName is already a title in allTask or allProjects array
+
+    if (array === undefined) {
+        // check if allProjects or allTasks has elements
+        console.log('array has no length');
+    } else {
+        for (let i; i <= array.length; i++) {
+
+
+
+            if (newName === array[i].title) {
+                console.log('already taken');
+                // set the value of the input field to an empty string
+                // the form will not pass validation because name was already taken
+                //inputTitleObj.value = '';
+            } else {
+                console.log('name not taken');
+            }
+        }
+    }
+
+
+    
+
+
+};
 
 export {
     allTasks,
@@ -232,5 +303,7 @@ export {
     dltFromLocalPrj,
     dltFromLocalTsk,
     loadData,
+    prjsCount,
+    checkName,
     
 }
