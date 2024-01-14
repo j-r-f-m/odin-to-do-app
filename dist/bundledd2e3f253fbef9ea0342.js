@@ -912,36 +912,58 @@ __webpack_require__.r(__webpack_exports__);
 
 // displays task to a corresponding project
 
-
 const taskOverview = (e) => {
-        // tasks-container
-        const tskCon = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('tasks-container-overview', 'div', '#content').crtNode();
+  // tasks-container
+  const tskCon = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "tasks-container-overview",
+    "div",
+    "#content"
+  ).crtNode();
 
-        // headgin container
-        const headCon = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('tsk-heading-con', 'div', '.tasks-container-overview').crtNode();
-        // index of object clicked in the allProjects-array
-        // the index is in the parent id of the clicked project button in a string
-        // string needs to cleaned of non numeric characters
+  // headgin container
+  const headCon = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "tsk-heading-con",
+    "div",
+    ".tasks-container-overview"
+  ).crtNode();
+  // index of object clicked in the allProjects-array
+  // the index is in the parent id of the clicked project button in a string
+  // string needs to cleaned of non numeric characters
 
-        // id of the project-object
-        let idStr = e.target.parentElement.id;
-        idStr = idStr.replace(/\D/g,'');
-        // conver to int
-        let idInt = parseInt(idStr)
-  
+  // id of the project-object
+  let idStr = e.target.parentElement.id;
+  idStr = idStr.replace(/\D/g, "");
+  // conver to int
+  let idInt = parseInt(idStr);
 
-        const idx = (0,_data__WEBPACK_IMPORTED_MODULE_1__.idxOfObj)(_data__WEBPACK_IMPORTED_MODULE_1__.allProjects, idInt);
-        // add id
-        tskCon.id = `task-overview-${_data__WEBPACK_IMPORTED_MODULE_1__.allProjects[idx].title}`;
-        //tasks-heading
-        const tskH1 = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('tasks-h1','h1','.tsk-heading-con', `${_data__WEBPACK_IMPORTED_MODULE_1__.allProjects[idx].title}`).crtNode();
-        // container that holds the close and the add buttons
-        const conBtns = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('container-buttons', 'div', '.tsk-heading-con').crtNode();
-        // create plus button for adding new tasks
-        (0,_dom__WEBPACK_IMPORTED_MODULE_0__.crtPlusBtnTsk)(_images_plus_svg__WEBPACK_IMPORTED_MODULE_3__, 'icon', 'icon-plus', conBtns);   
-        // close button
-        (0,_dom__WEBPACK_IMPORTED_MODULE_0__.crtDltBtn)(_images_close_svg__WEBPACK_IMPORTED_MODULE_2__, 'close', 'icon-close', conBtns, '.tasks-container-overview');
-}
+  const idx = (0,_data__WEBPACK_IMPORTED_MODULE_1__.idxOfObj)(_data__WEBPACK_IMPORTED_MODULE_1__.allProjects, idInt);
+  // add id
+  tskCon.id = `task-overview-${_data__WEBPACK_IMPORTED_MODULE_1__.allProjects[idx].title}`;
+  //tasks-heading
+  const tskH1 = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "tasks-h1",
+    "h1",
+    ".tsk-heading-con",
+    `${_data__WEBPACK_IMPORTED_MODULE_1__.allProjects[idx].title}`
+  ).crtNode();
+  // container that holds the close and the add buttons
+  const conBtns = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "container-buttons",
+    "div",
+    ".tsk-heading-con"
+  ).crtNode();
+  // create plus button for adding new tasks
+  (0,_dom__WEBPACK_IMPORTED_MODULE_0__.crtPlusBtnTsk)(_images_plus_svg__WEBPACK_IMPORTED_MODULE_3__, "icon", "icon-plus", conBtns);
+  // close button
+  (0,_dom__WEBPACK_IMPORTED_MODULE_0__.crtDltBtn)(
+    _images_close_svg__WEBPACK_IMPORTED_MODULE_2__,
+    "close",
+    "icon-close",
+    conBtns,
+    ".tasks-container-overview"
+  );
+};
+
 
 
 
@@ -978,267 +1000,335 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 // dom manipulation
 
 const NodeFac = (nameClass, typeOfElement, parent, txt) => {
-    // factory function that creates node objects with a class and appends it to
-    // its parent
+  // factory function that creates node objects with a class and appends it to
+  // its parent
 
-    // creates node and returns it
-    const crtNode = () => {
-        // select parent element
-        const parentElement = document.querySelector(parent);
+  // creates node and returns it
+  const crtNode = () => {
+    // select parent element
+    const parentElement = document.querySelector(parent);
 
-        // create element
-        const createDomElement = document.createElement(typeOfElement);
-        createDomElement.className = nameClass;
-        createDomElement.textContent = txt;
-        parentElement.appendChild(createDomElement);
+    // create element
+    const createDomElement = document.createElement(typeOfElement);
+    createDomElement.className = nameClass;
+    createDomElement.textContent = txt;
+    parentElement.appendChild(createDomElement);
 
-        // created node is returned -> element methods can be used
-        return createDomElement;
-    }
+    // created node is returned -> element methods can be used
+    return createDomElement;
+  };
 
-    return { crtNode };
-
-}
+  return { crtNode };
+};
 
 const dltClassEle = (nameOfClass) => {
-    // remove all elements with specific class 
+  // remove all elements with specific class
 
-    // get all elements you want to delete by their class names
-    const classElements = document.querySelectorAll(nameOfClass);
-    // iterate over them to delete them
-    classElements.forEach(classElements => {
-        classElements.remove();
-    })
-}
+  // get all elements you want to delete by their class names
+  const classElements = document.querySelectorAll(nameOfClass);
+  // iterate over them to delete them
+  classElements.forEach((classElements) => {
+    classElements.remove();
+  });
+};
 
 const dltNode = (selector) => {
-    // check if element exists befor trying to delete it
-    if (document.querySelector(selector)) {
-        // delete node
-        const node = document.querySelector(selector);
-        node.remove();
-    }
-}
+  // check if element exists befor trying to delete it
+  if (document.querySelector(selector)) {
+    // delete node
+    const node = document.querySelector(selector);
+    node.remove();
+  }
+};
 
 const dltNodeById = (id) => {
-    if (document.getElementById(id)) {
-        // delete node
-        const node = document.getElementById(id);
-        node.remove();
-    }
-}
+  if (document.getElementById(id)) {
+    // delete node
+    const node = document.getElementById(id);
+    node.remove();
+  }
+};
 
 /* ---------------------------- Buttons --------------------------------------- */
 const crtPlusBtnPrj = (source, nameOfClass, nameOfId, parent) => {
-    // create plus button -> create new Project
-    const tempPlus = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
-    tempPlus.addEventListener('click', () => {
-        dltClassEle('.dialog');
-        (0,_form_js__WEBPACK_IMPORTED_MODULE_4__.crtPrjForm)();
-    })
-}
+  // create plus button -> create new Project
+  const tempPlus = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
+  tempPlus.addEventListener("click", () => {
+    dltClassEle(".dialog");
+    (0,_form_js__WEBPACK_IMPORTED_MODULE_4__.crtPrjForm)();
+  });
+};
 
 const crtPlusBtnTsk = (source, nameOfClass, nameOfId, parent) => {
-    // create plus button -> create new Project
-    const tempPlus = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
-    tempPlus.addEventListener('click', () => {
-        dltClassEle('.dialog');
-        (0,_form_js__WEBPACK_IMPORTED_MODULE_4__.crtTskForm)();
-        setDefaultPrj();
-        //console.log(allTasks);
-
-    })
-}
-
+  // create plus button -> create new Project
+  const tempPlus = IconFac(source, nameOfClass, nameOfId, parent).crtIcon();
+  tempPlus.addEventListener("click", () => {
+    dltClassEle(".dialog");
+    (0,_form_js__WEBPACK_IMPORTED_MODULE_4__.crtTskForm)();
+    setDefaultPrj();
+    //console.log(allTasks);
+  });
+};
 
 const setDefaultPrj = () => {
-    // get the project name from tasks-h1 and set it as default
-    // in input field
+  // get the project name from tasks-h1 and set it as default
+  // in input field
 
-    // select input field
-    const selectPrjIpt = document.getElementById('project')
-    // select header of tasks overview to get title
-    const prjName = document.querySelector('.tasks-h1')
-    
-    selectPrjIpt.value = prjName.textContent;
-}
+  // select input field
+  const selectPrjIpt = document.getElementById("project");
+  // select header of tasks overview to get title
+  const prjName = document.querySelector(".tasks-h1");
+
+  selectPrjIpt.value = prjName.textContent;
+};
 
 const crtPrjsBtn = (nameClass, typeOfElement, parent, txt, idOfEle) => {
-    // create the projects elements in the side bar -> open project overview 
- 
-    // with the last argument the position of the project in the allProjects array
-    // is passed and can be used with the event-argument
-    const prj = NodeFac(nameClass, typeOfElement, parent, txt, idOfEle).crtNode();
-    //prj.id = idOfEle;
-    prj.addEventListener('click', (e) => {
-        
-        dltNode('.tasks-container-overview');
-        // create container that holds the tasks corresponding to a project
-        (0,_displayTask__WEBPACK_IMPORTED_MODULE_2__.taskOverview)(e);
-        tskListByPrj(_data__WEBPACK_IMPORTED_MODULE_3__.allTasks, e.target.textContent)
-        //taskList(allTasks, '.tasks-container-overview');
-        // create tasks container
-        //NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
-    })
-/*     console.log('allProjects');
+  // create the projects elements in the side bar -> open project overview
+
+  // with the last argument the position of the project in the allProjects array
+  // is passed and can be used with the event-argument
+  const prj = NodeFac(nameClass, typeOfElement, parent, txt, idOfEle).crtNode();
+  //prj.id = idOfEle;
+  prj.addEventListener("click", (e) => {
+    dltNode(".tasks-container-overview");
+    // create container that holds the tasks corresponding to a project
+    (0,_displayTask__WEBPACK_IMPORTED_MODULE_2__.taskOverview)(e);
+    tskListByPrj(_data__WEBPACK_IMPORTED_MODULE_3__.allTasks, e.target.textContent);
+    //taskList(allTasks, '.tasks-container-overview');
+    // create tasks container
+    //NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
+  });
+  /*     console.log('allProjects');
     console.log(allProjects);
     console.log('allTasks');
     console.log(allTasks); */
-}
+};
 
 const crtDltBtn = (source, nameOfClass, nameOfId, parent, nodeToDlt) => {
-    // x-shaped delete button
-    const closeIcon = IconFac(_images_close_svg__WEBPACK_IMPORTED_MODULE_0__, nameOfClass, nameOfId, parent).crtIcon();
-    closeIcon.addEventListener('click', () => {
-        dltNode(nodeToDlt)
-    })
-}
+  // x-shaped delete button
+  const closeIcon = IconFac(_images_close_svg__WEBPACK_IMPORTED_MODULE_0__, nameOfClass, nameOfId, parent).crtIcon();
+  closeIcon.addEventListener("click", () => {
+    dltNode(nodeToDlt);
+  });
+};
 
-const crtDltBtnPrj = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => {
-    // x-shaped delete button for deleteing projects
-    // not only the dom-elements have to be deleted, also the array containing 
-    // all the projects has to be updated -> deleting corresponding element
-    const closeIcon = IconFac(_images_close_svg__WEBPACK_IMPORTED_MODULE_0__, nameOfClass, nameOfId, parent).crtIcon();
+const crtDltBtnPrj = (
+  source,
+  nameOfClass,
+  nameOfId,
+  parent,
+  nodeToDlt,
+  obj
+) => {
+  // x-shaped delete button for deleteing projects
+  // not only the dom-elements have to be deleted, also the array containing
+  // all the projects has to be updated -> deleting corresponding element
+  const closeIcon = IconFac(_images_close_svg__WEBPACK_IMPORTED_MODULE_0__, nameOfClass, nameOfId, parent).crtIcon();
 
+  closeIcon.addEventListener("click", (e) => {
+    // delete container with project name and the delete button
+    dltNode(nodeToDlt);
+    console.log(obj.title);
+    // remove project from array
+    (0,_data__WEBPACK_IMPORTED_MODULE_3__.rmvTsk)(_data__WEBPACK_IMPORTED_MODULE_3__.allProjects, obj.id);
+    // remove tasks corresponding to project that will be removed from allTasks
+    // array
+    (0,_data__WEBPACK_IMPORTED_MODULE_3__.rmvTskByPrj)(_data__WEBPACK_IMPORTED_MODULE_3__.allTasks, obj.title);
+    // remove task overview if it is opened
+    // rmvTskOver(e);
+    dltNode(".tasks-container-overview");
+    //dltNode(parent)
 
-    closeIcon.addEventListener('click', (e) => {
-        // delete container with project name and the delete button
-        dltNode(nodeToDlt);
-        console.log(obj.title)
-        // remove project from array
-        ;(0,_data__WEBPACK_IMPORTED_MODULE_3__.rmvTsk)(_data__WEBPACK_IMPORTED_MODULE_3__.allProjects, obj.id);
-        // remove tasks corresponding to project that will be removed from allTasks
-        // array
-        (0,_data__WEBPACK_IMPORTED_MODULE_3__.rmvTskByPrj)(_data__WEBPACK_IMPORTED_MODULE_3__.allTasks, obj.title);
-        // remove task overview if it is opened
-        // rmvTskOver(e);
-        dltNode('.tasks-container-overview')
-        //dltNode(parent)
+    (0,_data__WEBPACK_IMPORTED_MODULE_3__.dltFromLocalPrj)(e);
+  });
+};
 
-        ;(0,_data__WEBPACK_IMPORTED_MODULE_3__.dltFromLocalPrj)(e);
-    })
-}
+const crtDltBtnTsk = (
+  source,
+  nameOfClass,
+  nameOfId,
+  parent,
+  nodeToDlt,
+  obj
+) => {
+  // x-shaped delete button for deleteing tasks
+  // not only the dom-elements have to be deleted, also the array containing
+  // all the projects has to be updated -> deleting corresponding element
+  const closeIcon = IconFac(_images_close_svg__WEBPACK_IMPORTED_MODULE_0__, nameOfClass, nameOfId, parent).crtIcon();
+  closeIcon.addEventListener("click", (e) => {
+    // delete node where the button is located
+    dltNode(nodeToDlt);
+    // delete projects container;
 
+    // remove task from array
 
+    (0,_data__WEBPACK_IMPORTED_MODULE_3__.rmvTsk)(_data__WEBPACK_IMPORTED_MODULE_3__.allTasks, e.target.parentElement.id);
 
-const crtDltBtnTsk = (source, nameOfClass, nameOfId, parent, nodeToDlt, obj) => {
-    // x-shaped delete button for deleteing tasks
-    // not only the dom-elements have to be deleted, also the array containing 
-    // all the projects has to be updated -> deleting corresponding element
-    const closeIcon = IconFac(_images_close_svg__WEBPACK_IMPORTED_MODULE_0__, nameOfClass, nameOfId, parent).crtIcon();
-    closeIcon.addEventListener('click', (e) => {
-        // delete node where the button is located
-        dltNode(nodeToDlt);
-        // delete projects container;
+    //console.log(document.querySelector('.tasks-h1').textContent)
+    //console.log(allTasks);
 
-        // remove task from array
-        
-        (0,_data__WEBPACK_IMPORTED_MODULE_3__.rmvTsk)(_data__WEBPACK_IMPORTED_MODULE_3__.allTasks, e.target.parentElement.id);
-
-        //console.log(document.querySelector('.tasks-h1').textContent)
-        //console.log(allTasks);
-
-        (0,_data__WEBPACK_IMPORTED_MODULE_3__.dltFromLocalTsk)(e);
-    })
-}
+    (0,_data__WEBPACK_IMPORTED_MODULE_3__.dltFromLocalTsk)(e);
+  });
+};
 
 const crtEditBtnTsk = (source, nameOfClass, nameOfId, parent) => {
-    const editIcon = IconFac(_images_pencil_svg__WEBPACK_IMPORTED_MODULE_1__, nameOfClass, nameOfId, parent).crtIcon();
-    editIcon.addEventListener('click', (e) => {
-
-        dltClassEle('.dialog');
-        //console.log(e.target.parentElement.id)
-        (0,_form_js__WEBPACK_IMPORTED_MODULE_4__.editTskForm)(e);
-        //setDefaultPrj();
-        //console.log(allTasks);
-    })
-}
+  const editIcon = IconFac(_images_pencil_svg__WEBPACK_IMPORTED_MODULE_1__, nameOfClass, nameOfId, parent).crtIcon();
+  editIcon.addEventListener("click", (e) => {
+    dltClassEle(".dialog");
+    //console.log(e.target.parentElement.id)
+    (0,_form_js__WEBPACK_IMPORTED_MODULE_4__.editTskForm)(e);
+    //setDefaultPrj();
+    //console.log(allTasks);
+  });
+};
 
 // remove task overview of corresponding porject when the project gets deleted
 // const rmvTskOver = (e) => {
-    
+
 //     dltNodeById(`task-overview-${e.target.parentElement.firstChild.textContent}`);
 // }
 
-
 //const addPrj = IconFac();
 const IconFac = (source, nameOfClass, nameOfId, parent) => {
-    // create icon
+  // create icon
 
-    const crtIcon = () => {
-        const icon = new Image();
-        icon.src = source;
-        icon.id = nameOfId
-        icon.className = nameOfClass;
-        parent.appendChild(icon);
-        return icon;
-    }
-    return { crtIcon }
-}
+  const crtIcon = () => {
+    const icon = new Image();
+    icon.src = source;
+    icon.id = nameOfId;
+    icon.className = nameOfClass;
+    parent.appendChild(icon);
+    return icon;
+  };
+  return { crtIcon };
+};
 
 const tskListByPrj = (arr, projectName) => {
-    // create the tasklist corresponding to a project
-    // iterate over the allTasks array and display the tasks corresponding to the project
+  // create the tasklist corresponding to a project
+  // iterate over the allTasks array and display the tasks corresponding to the project
 
-    // create the div that holds the tasks -> its needed to delete tasks
-    const tasksContainer =  NodeFac('tasks-container', 'div', '.tasks-container-overview').crtNode();
-    
-    for (let i = 0; i < arr.length; i++) {
+  // create the div that holds the tasks -> its needed to delete tasks
+  const tasksContainer = NodeFac(
+    "tasks-container",
+    "div",
+    ".tasks-container-overview"
+  ).crtNode();
 
-        if (arr[i].project === projectName) {
-            
-            // create the task-div that holds task and dlt-button
-            const tempTaskCon = NodeFac(`tasks-container-${i}`, 'div', '.tasks-container').crtNode();
-            tempTaskCon.classList.add('tsks-con');
-            tempTaskCon.id = `${arr[i].id}`;
-            // create Edit Button
-            crtEditBtnTsk(_images_pencil_svg__WEBPACK_IMPORTED_MODULE_1__, 'edit', 'icon-edit', tempTaskCon, `.tasks-container-${i}`);
-            // display the title of the task and the due date
-            const newTask = NodeFac('task', 'div', `.tasks-container-${i}`, `${arr[i].title} - ${arr[i].dueDate}`).crtNode();
-            // create delete Button that deletes html element and objects in allPrjs. array 
-            crtDltBtnTsk(_images_close_svg__WEBPACK_IMPORTED_MODULE_0__, 'close', 'icon-close', tempTaskCon, `.tasks-container-${i}`, '.tasks-container-overview', arr[i]);
-        }
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].project === projectName) {
+      // create the task-div that holds task and dlt-button
+      const tempTaskCon = NodeFac(
+        `tasks-container-${i}`,
+        "div",
+        ".tasks-container"
+      ).crtNode();
+      tempTaskCon.classList.add("tsks-con");
+      tempTaskCon.id = `${arr[i].id}`;
+      // create Edit Button
+      crtEditBtnTsk(
+        _images_pencil_svg__WEBPACK_IMPORTED_MODULE_1__,
+        "edit",
+        "icon-edit",
+        tempTaskCon,
+        `.tasks-container-${i}`
+      );
+      // display the title of the task and the due date
+      const newTask = NodeFac(
+        "task",
+        "div",
+        `.tasks-container-${i}`,
+        `${arr[i].title} - ${arr[i].dueDate}`
+      ).crtNode();
+      // create delete Button that deletes html element and objects in allPrjs. array
+      crtDltBtnTsk(
+        _images_close_svg__WEBPACK_IMPORTED_MODULE_0__,
+        "close",
+        "icon-close",
+        tempTaskCon,
+        `.tasks-container-${i}`,
+        ".tasks-container-overview",
+        arr[i]
+      );
     }
-}
+  }
+};
 
 const projectsList = (arr, parent) => {
-    // display all projects in sidebar
-    for (let i = 0; i < arr.length; i++) {
-        // create the project-div that holds project and dlt-button
-        const tempPrjCon = NodeFac(`projects-container-${i}`, 'div', '.projects-tasks').crtNode();
-        tempPrjCon.classList.add('projects-container');
-        tempPrjCon.id = `prj-${arr[i].id}`;
+  // display all projects in sidebar
+  for (let i = 0; i < arr.length; i++) {
+    // create the project-div that holds project and dlt-button
+    const tempPrjCon = NodeFac(
+      `projects-container-${i}`,
+      "div",
+      ".projects-tasks"
+    ).crtNode();
+    tempPrjCon.classList.add("projects-container");
+    tempPrjCon.id = `prj-${arr[i].id}`;
 
-        // create project div -> open overview containing corresponding tasks 
-        crtPrjsBtn('project', 'div', `.projects-container-${i}`, `${arr[i].title}`, `${i}`);
-        // create delete Button that deletes html element and objects in allPrjs. array 
-        crtDltBtnPrj(_images_close_svg__WEBPACK_IMPORTED_MODULE_0__, 'close', 'icon-close', tempPrjCon, `.projects-container-${i}`,  arr[i]);
-    }
-}
+    // create project div -> open overview containing corresponding tasks
+    crtPrjsBtn(
+      "project",
+      "div",
+      `.projects-container-${i}`,
+      `${arr[i].title}`,
+      `${i}`
+    );
+    // create delete Button that deletes html element and objects in allPrjs. array
+    crtDltBtnPrj(
+      _images_close_svg__WEBPACK_IMPORTED_MODULE_0__,
+      "close",
+      "icon-close",
+      tempPrjCon,
+      `.projects-container-${i}`,
+      arr[i]
+    );
+  }
+};
 
 const projectsList2 = (arr) => {
-    //projectsList2 creates the projects in the sidebar from localStorage
-    // when page is refreshed or closed and then reopened
+  //projectsList2 creates the projects in the sidebar from localStorage
+  // when page is refreshed or closed and then reopened
 
-    // create container for prjects 
-    const defaultProjects = NodeFac('projects-tasks', 'div', '.prj-nav-con').crtNode();
-    
-    for (let i = 0; i < arr.length; i++) {
-        // create the project-div that holds project and dlt-button
-        const tempPrjCon = NodeFac(`projects-container-${i}`, 'div', '.projects-tasks').crtNode();
-        tempPrjCon.classList.add('projects-container');
-        tempPrjCon.id = `prj-${arr[i].id}`;
+  // create container for prjects
+  const defaultProjects = NodeFac(
+    "projects-tasks",
+    "div",
+    ".prj-nav-con"
+  ).crtNode();
 
-        // create project div -> open overview containing corresponding tasks 
-        crtPrjsBtn('project', 'div', `.projects-container-${i}`, `${arr[i].title}`, `${i}`);
-        // create delete Button that deletes html element and objects in allPrjs. array 
-        crtDltBtnPrj(_images_close_svg__WEBPACK_IMPORTED_MODULE_0__, 'close', 'icon-close', tempPrjCon, `.projects-container-${i}`,  arr[i]);
-    }
-}
+  for (let i = 0; i < arr.length; i++) {
+    // create the project-div that holds project and dlt-button
+    const tempPrjCon = NodeFac(
+      `projects-container-${i}`,
+      "div",
+      ".projects-tasks"
+    ).crtNode();
+    tempPrjCon.classList.add("projects-container");
+    tempPrjCon.id = `prj-${arr[i].id}`;
+
+    // create project div -> open overview containing corresponding tasks
+    crtPrjsBtn(
+      "project",
+      "div",
+      `.projects-container-${i}`,
+      `${arr[i].title}`,
+      `${i}`
+    );
+    // create delete Button that deletes html element and objects in allPrjs. array
+    crtDltBtnPrj(
+      _images_close_svg__WEBPACK_IMPORTED_MODULE_0__,
+      "close",
+      "icon-close",
+      tempPrjCon,
+      `.projects-container-${i}`,
+      arr[i]
+    );
+  }
+};
+
 
 
 
@@ -1263,316 +1353,416 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const crtTskForm = () => {
-    // create a new task
-    // create input form with model to get data for task
+  // create a new task
+  // create input form with model to get data for task
 
-    //modal - create dialog
-    const inputModal = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('dialog', 'dialog', '#content').crtNode();
-    inputModal.setAttribute('id', 'ipt-dialog');
+  //modal - create dialog
+  const inputModal = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("dialog", "dialog", "#content").crtNode();
+  inputModal.setAttribute("id", "ipt-dialog");
 
-    //------------------------------- form ------------------------------
-    const form = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('input-form', 'form', '.dialog').crtNode();
-    form.setAttribute('method', 'dialog');
-    // title
-    const labelTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('label', 'label', '.input-form', 'Title').crtNode();
-    labelTitle.setAttribute('for', 'title');
-    const inputTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('input', 'input', '.input-form').crtNode();
-    inputTitle.setAttribute('type', 'text');
-    inputTitle.setAttribute('name', 'title');
-    inputTitle.setAttribute('id', 'task-title');
-    inputTitle.required = true;
-    //description
-    const labeDescr = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('label', 'label', '.input-form', 'Description').crtNode();
-    labeDescr.setAttribute('for', 'description');
-    const inputDescr = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('textarea', 'textarea', '.input-form').crtNode();
-    //inputDescr.setAttribute('type', 'text');
-    inputDescr.setAttribute('name', 'description');
-    inputDescr.setAttribute('id', 'task-description');
-    inputDescr.required = true;
-    // due date
-    const labelDue = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('label', 'label', '.input-form', 'Due Date').crtNode();
-    labelDue.setAttribute('for', 'due-date');
-    const inputDue = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('input', 'input', '.input-form').crtNode();
-    inputDue.setAttribute('type', 'date');
-    inputDue.setAttribute('name', 'due-date');
-    inputDue.setAttribute('id', 'due-date');
-    inputDue.required = true;
-    // Priority
-    const labelPri = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('label', 'label', '.input-form', 'Priority').crtNode();
-    labelPri.setAttribute('for', 'priority');
-    const selectPri = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('select', 'select', '.input-form').crtNode();
-    selectPri.setAttribute('name', 'priority');
-    const optHigh = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('option-priority', 'option', '.select', 'High').crtNode();
-    optHigh.setAttribute('value', 'High');
-    optHigh.setAttribute('selected','');
-    const optMedium = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('option-priority', 'option', '.select', 'Medium').crtNode();
-    optMedium.setAttribute('value', 'Medium');
-    const optLow = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('option-priority', 'option', '.select', 'Low').crtNode();
-    optLow.setAttribute('Value','Low');
+  //------------------------------- form ------------------------------
+  const form = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("input-form", "form", ".dialog").crtNode();
+  form.setAttribute("method", "dialog");
+  // title
+  const labelTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "label",
+    "label",
+    ".input-form",
+    "Title"
+  ).crtNode();
+  labelTitle.setAttribute("for", "title");
+  const inputTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("input", "input", ".input-form").crtNode();
+  inputTitle.setAttribute("type", "text");
+  inputTitle.setAttribute("name", "title");
+  inputTitle.setAttribute("id", "task-title");
+  inputTitle.required = true;
+  //description
+  const labeDescr = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "label",
+    "label",
+    ".input-form",
+    "Description"
+  ).crtNode();
+  labeDescr.setAttribute("for", "description");
+  const inputDescr = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("textarea", "textarea", ".input-form").crtNode();
+  //inputDescr.setAttribute('type', 'text');
+  inputDescr.setAttribute("name", "description");
+  inputDescr.setAttribute("id", "task-description");
+  inputDescr.required = true;
+  // due date
+  const labelDue = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "label",
+    "label",
+    ".input-form",
+    "Due Date"
+  ).crtNode();
+  labelDue.setAttribute("for", "due-date");
+  const inputDue = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("input", "input", ".input-form").crtNode();
+  inputDue.setAttribute("type", "date");
+  inputDue.setAttribute("name", "due-date");
+  inputDue.setAttribute("id", "due-date");
+  inputDue.required = true;
+  // Priority
+  const labelPri = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "label",
+    "label",
+    ".input-form",
+    "Priority"
+  ).crtNode();
+  labelPri.setAttribute("for", "priority");
+  const selectPri = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("select", "select", ".input-form").crtNode();
+  selectPri.setAttribute("name", "priority");
+  const optHigh = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "option-priority",
+    "option",
+    ".select",
+    "High"
+  ).crtNode();
+  optHigh.setAttribute("value", "High");
+  optHigh.setAttribute("selected", "");
+  const optMedium = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "option-priority",
+    "option",
+    ".select",
+    "Medium"
+  ).crtNode();
+  optMedium.setAttribute("value", "Medium");
+  const optLow = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "option-priority",
+    "option",
+    ".select",
+    "Low"
+  ).crtNode();
+  optLow.setAttribute("Value", "Low");
 
-    // Project
-    const labelproject = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('label', 'label', '.input-form', 'Project: ').crtNode();
-    labelproject.setAttribute('for', 'Project');
-    const inputProject = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('input', 'input', '.input-form').crtNode();
-    inputProject.setAttribute('type', 'text');
-    inputProject.setAttribute('name', 'project');
-    inputProject.setAttribute('id', 'project');
-    inputProject.required = true;
-    // cancel button
-    const cancelBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('btn', 'button', '.input-form', 'Cancel').crtNode();
-    cancelBtn.addEventListener('click', () => {
-        // delete dialog
-        (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)('#ipt-dialog');
-        inputModal.close();
-    })
+  // Project
+  const labelproject = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "label",
+    "label",
+    ".input-form",
+    "Project: "
+  ).crtNode();
+  labelproject.setAttribute("for", "Project");
+  const inputProject = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("input", "input", ".input-form").crtNode();
+  inputProject.setAttribute("type", "text");
+  inputProject.setAttribute("name", "project");
+  inputProject.setAttribute("id", "project");
+  inputProject.required = true;
+  // cancel button
+  const cancelBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("btn", "button", ".input-form", "Cancel").crtNode();
+  cancelBtn.addEventListener("click", () => {
+    // delete dialog
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)("#ipt-dialog");
+    inputModal.close();
+  });
 
+  // get parent of the default tasks list heading in order to add new chevron
+  // down icons
+  const defH1Con = document.querySelector(".def-h1-con");
+  const prjH1Con = document.querySelector(".prj-h1-con");
 
-    // get parent of the default tasks list heading in order to add new chevron 
-    // down icons
-    const defH1Con = document.querySelector('.def-h1-con');
-    const prjH1Con = document.querySelector('.prj-h1-con');
+  // confirm button
+  const confirmBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "btn",
+    "input",
+    ".input-form",
+    "Confirm"
+  ).crtNode();
+  confirmBtn.setAttribute("type", "submit");
 
-    // confirm button
-    const confirmBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('btn', 'input', '.input-form', 'Confirm').crtNode();
-    confirmBtn.setAttribute('type', 'submit');
+  confirmBtn.addEventListener("click", (e) => {
+    // Form validation
+    if (inputTitle.value === "") {
+      return;
+    } else if (inputDescr.value === "") {
+      return;
+    } else if (inputDue.value === "") {
+      return;
+    } else if (inputProject.value === "") {
+      return;
+    } else {
+      // if validation is passed then create new task object
+      // console.log(selectPri.options[selectPri.selectedIndex].value);
+      // console.log(allTasks);
+      const newTsk = (0,_data__WEBPACK_IMPORTED_MODULE_1__.addTaskObj)(
+        inputTitle.value,
+        inputDescr.value,
+        inputDue.value,
+        inputProject.value,
+        selectPri.options[selectPri.selectedIndex].value
+      );
+      // delete old dialog
+      (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)("#ipt-dialog");
+      (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)(".default-tasks");
+      (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)(".tasks-container");
+      // create tasklist for specified project
+      (0,_dom__WEBPACK_IMPORTED_MODULE_0__.tskListByPrj)(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks, newTsk.project);
+      // increase task count when new task was created
+      (0,_data__WEBPACK_IMPORTED_MODULE_1__.increaseTaskCount)();
 
-    confirmBtn.addEventListener('click', (e) => {
-        // Form validation
-        if (inputTitle.value === '') {
-            return
-        } else if (inputDescr.value === '') {
-            return
-        } else if (inputDue.value === '') {
-            return 
-        } else if (inputProject.value === '') {
-            return
-        } else {
-            // if validation is passed then create new task object
-            // console.log(selectPri.options[selectPri.selectedIndex].value);
-            // console.log(allTasks);
-            const newTsk = (0,_data__WEBPACK_IMPORTED_MODULE_1__.addTaskObj)(inputTitle.value, inputDescr.value, inputDue.value, inputProject.value, selectPri.options[selectPri.selectedIndex].value);
-            // delete old dialog
-            (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)('#ipt-dialog');
-            (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)('.default-tasks');
-            (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)('.tasks-container');
-            // create tasklist for specified project
-            (0,_dom__WEBPACK_IMPORTED_MODULE_0__.tskListByPrj)(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks, newTsk.project);
-            // increase task count when new task was created
-            (0,_data__WEBPACK_IMPORTED_MODULE_1__.increaseTaskCount)();
+      // save tasks to local storage
+      (0,_data__WEBPACK_IMPORTED_MODULE_1__.saveTolocalTsk)(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks);
+    }
+    console.log("allTasks");
+    console.log(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks);
+  });
 
-            // save tasks to local storage
-            (0,_data__WEBPACK_IMPORTED_MODULE_1__.saveTolocalTsk)(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks);
-
-        }
-        console.log('allTasks');
-        console.log(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks);
-    })
-
-
-
-
-    // show modal
-    inputModal.showModal();
-}
+  // show modal
+  inputModal.showModal();
+};
 
 const editTskForm = (e) => {
-    // edit a new task
-    // create input form with model to get data for task
+  // edit a new task
+  // create input form with model to get data for task
 
-    // id of task object that user wants to edit
-    const idObjStr = e.target.parentElement.id;
-    //console.log(idObjStr)
-    
-    // conver from string to int
-    const idObjInt = parseInt(idObjStr);
-    //console.log(typeof(idObjInt))
+  // id of task object that user wants to edit
+  const idObjStr = e.target.parentElement.id;
+  //console.log(idObjStr)
 
-    // get index of object that user wants to edit
-    const idxOfObject = (0,_data__WEBPACK_IMPORTED_MODULE_1__.idxOfObj)(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks, idObjInt);
-    //console.log(idxOfObject)
+  // conver from string to int
+  const idObjInt = parseInt(idObjStr);
+  //console.log(typeof(idObjInt))
 
-    //modal - create dialog
-    const inputModal = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('dialog', 'dialog', '#content').crtNode();
-    inputModal.setAttribute('id', 'ipt-dialog');
+  // get index of object that user wants to edit
+  const idxOfObject = (0,_data__WEBPACK_IMPORTED_MODULE_1__.idxOfObj)(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks, idObjInt);
+  //console.log(idxOfObject)
 
-    //------------------------------- form ------------------------------
-    const form = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('input-form', 'form', '.dialog').crtNode();
-    form.setAttribute('method', 'dialog');
-    // title
-    const labelTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('label', 'label', '.input-form', 'Title').crtNode();
-    labelTitle.setAttribute('for', 'title');
-    const inputTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('input', 'input', '.input-form').crtNode();
-    inputTitle.setAttribute('type', 'text');
-    inputTitle.setAttribute('name', 'title');
-    inputTitle.setAttribute('id', 'task-title');
-    inputTitle.value = _data__WEBPACK_IMPORTED_MODULE_1__.allTasks[idxOfObject].title;
-    inputTitle.required = true;
-    // description
-    const labeDescr = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('label', 'label', '.input-form', 'Description').crtNode();
-    labeDescr.setAttribute('for', 'description');
-    const inputDescr = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('textarea', 'textarea', '.input-form').crtNode();
-    //inputDescr.setAttribute('type', 'text');
-    inputDescr.setAttribute('name', 'description');
-    inputDescr.setAttribute('id', 'task-description');
-    inputDescr.value = _data__WEBPACK_IMPORTED_MODULE_1__.allTasks[idxOfObject].descr;
-    inputDescr.required = true;
-    // due date
-    const labelDue = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('label', 'label', '.input-form', 'Due Date').crtNode();
-    labelDue.setAttribute('for', 'due-date');
-    const inputDue = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('input', 'input', '.input-form').crtNode();
-    inputDue.setAttribute('type', 'date');
-    inputDue.setAttribute('name', 'due-date');
-    inputDue.setAttribute('id', 'due-date');
-    inputDue.value = _data__WEBPACK_IMPORTED_MODULE_1__.allTasks[idxOfObject].dueDate;
-    inputDue.required = true;
-    // priority
-    const labelPri = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('label', 'label', '.input-form', 'Priority').crtNode();
-    labelPri.setAttribute('for', 'priority');
-    const selectPri = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('select', 'select', '.input-form').crtNode();
-    selectPri.setAttribute('name', 'priority');
-    const optHigh = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('option-priority', 'option', '.select', 'High').crtNode();
-    optHigh.setAttribute('value', 'High');
-    const optMedium = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('option-priority', 'option', '.select', 'Medium').crtNode();
-    optMedium.setAttribute('value', 'Medium');
-    const optLow = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('option-priority', 'option', '.select', 'Low').crtNode();
-    optLow.setAttribute('Value','Low');
-    selectPri.value = _data__WEBPACK_IMPORTED_MODULE_1__.allTasks[idxOfObject].priority;
+  //modal - create dialog
+  const inputModal = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("dialog", "dialog", "#content").crtNode();
+  inputModal.setAttribute("id", "ipt-dialog");
 
-    // Project
-    const labelproject = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('label', 'label', '.input-form', 'Project: ').crtNode();
-    labelproject.setAttribute('for', 'Project');
-    const inputProject = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('input', 'input', '.input-form').crtNode();
-    inputProject.setAttribute('type', 'text');
-    inputProject.setAttribute('name', 'project');
-    inputProject.setAttribute('id', 'project');
-    inputProject.value = _data__WEBPACK_IMPORTED_MODULE_1__.allTasks[idxOfObject].project;
-    inputProject.required = true;
-    // cancel button
-    const cancelBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('btn', 'button', '.input-form', 'Cancel').crtNode();
-    cancelBtn.addEventListener('click', () => {
-        // delete dialog
-        (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)('#ipt-dialog');
-        inputModal.close();
-    })
+  //------------------------------- form ------------------------------
+  const form = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("input-form", "form", ".dialog").crtNode();
+  form.setAttribute("method", "dialog");
+  // title
+  const labelTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "label",
+    "label",
+    ".input-form",
+    "Title"
+  ).crtNode();
+  labelTitle.setAttribute("for", "title");
+  const inputTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("input", "input", ".input-form").crtNode();
+  inputTitle.setAttribute("type", "text");
+  inputTitle.setAttribute("name", "title");
+  inputTitle.setAttribute("id", "task-title");
+  inputTitle.value = _data__WEBPACK_IMPORTED_MODULE_1__.allTasks[idxOfObject].title;
+  inputTitle.required = true;
+  // description
+  const labeDescr = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "label",
+    "label",
+    ".input-form",
+    "Description"
+  ).crtNode();
+  labeDescr.setAttribute("for", "description");
+  const inputDescr = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("textarea", "textarea", ".input-form").crtNode();
+  //inputDescr.setAttribute('type', 'text');
+  inputDescr.setAttribute("name", "description");
+  inputDescr.setAttribute("id", "task-description");
+  inputDescr.value = _data__WEBPACK_IMPORTED_MODULE_1__.allTasks[idxOfObject].descr;
+  inputDescr.required = true;
+  // due date
+  const labelDue = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "label",
+    "label",
+    ".input-form",
+    "Due Date"
+  ).crtNode();
+  labelDue.setAttribute("for", "due-date");
+  const inputDue = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("input", "input", ".input-form").crtNode();
+  inputDue.setAttribute("type", "date");
+  inputDue.setAttribute("name", "due-date");
+  inputDue.setAttribute("id", "due-date");
+  inputDue.value = _data__WEBPACK_IMPORTED_MODULE_1__.allTasks[idxOfObject].dueDate;
+  inputDue.required = true;
+  // priority
+  const labelPri = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "label",
+    "label",
+    ".input-form",
+    "Priority"
+  ).crtNode();
+  labelPri.setAttribute("for", "priority");
+  const selectPri = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("select", "select", ".input-form").crtNode();
+  selectPri.setAttribute("name", "priority");
+  const optHigh = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "option-priority",
+    "option",
+    ".select",
+    "High"
+  ).crtNode();
+  optHigh.setAttribute("value", "High");
+  const optMedium = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "option-priority",
+    "option",
+    ".select",
+    "Medium"
+  ).crtNode();
+  optMedium.setAttribute("value", "Medium");
+  const optLow = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "option-priority",
+    "option",
+    ".select",
+    "Low"
+  ).crtNode();
+  optLow.setAttribute("Value", "Low");
+  selectPri.value = _data__WEBPACK_IMPORTED_MODULE_1__.allTasks[idxOfObject].priority;
 
+  // Project
+  const labelproject = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "label",
+    "label",
+    ".input-form",
+    "Project: "
+  ).crtNode();
+  labelproject.setAttribute("for", "Project");
+  const inputProject = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("input", "input", ".input-form").crtNode();
+  inputProject.setAttribute("type", "text");
+  inputProject.setAttribute("name", "project");
+  inputProject.setAttribute("id", "project");
+  inputProject.value = _data__WEBPACK_IMPORTED_MODULE_1__.allTasks[idxOfObject].project;
+  inputProject.required = true;
+  // cancel button
+  const cancelBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("btn", "button", ".input-form", "Cancel").crtNode();
+  cancelBtn.addEventListener("click", () => {
+    // delete dialog
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)("#ipt-dialog");
+    inputModal.close();
+  });
 
-    // get parent of the default tasks list heading in order to add new chevron 
-    // down icons
-    const defH1Con = document.querySelector('.def-h1-con');
-    const prjH1Con = document.querySelector('.prj-h1-con');
+  // get parent of the default tasks list heading in order to add new chevron
+  // down icons
+  const defH1Con = document.querySelector(".def-h1-con");
+  const prjH1Con = document.querySelector(".prj-h1-con");
 
-    // confirm button
-    const confirmBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('btn', 'input', '.input-form', 'Confirm').crtNode();
-    confirmBtn.setAttribute('type', 'submit');
+  // confirm button
+  const confirmBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "btn",
+    "input",
+    ".input-form",
+    "Confirm"
+  ).crtNode();
+  confirmBtn.setAttribute("type", "submit");
 
-    confirmBtn.addEventListener('click', (e) => {
-        // Form validation
-        if (inputTitle.value === '') {
-            return
-        } else if (inputDescr.value === '') {
-            return
-        } else if (inputDue.value === '') {
-            return 
-        } else if (inputProject.value === '') {
-            return
-        } else {
-            // if validation is passed then create new task object
-            const newTsk = (0,_data__WEBPACK_IMPORTED_MODULE_1__.editTskObj)( idxOfObject, inputTitle.value, inputDescr.value, inputDue.value, inputProject.value, selectPri.options[selectPri.selectedIndex].value);
-            //editTskObj
-            // delete old dialog
-            (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)('#ipt-dialog');
-            (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)('.default-tasks');
-            (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)('.tasks-container');
+  confirmBtn.addEventListener("click", (e) => {
+    // Form validation
+    if (inputTitle.value === "") {
+      return;
+    } else if (inputDescr.value === "") {
+      return;
+    } else if (inputDue.value === "") {
+      return;
+    } else if (inputProject.value === "") {
+      return;
+    } else {
+      // if validation is passed then create new task object
+      const newTsk = (0,_data__WEBPACK_IMPORTED_MODULE_1__.editTskObj)(
+        idxOfObject,
+        inputTitle.value,
+        inputDescr.value,
+        inputDue.value,
+        inputProject.value,
+        selectPri.options[selectPri.selectedIndex].value
+      );
+      //editTskObj
+      // delete old dialog
+      (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)("#ipt-dialog");
+      (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)(".default-tasks");
+      (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)(".tasks-container");
 
-            (0,_dom__WEBPACK_IMPORTED_MODULE_0__.tskListByPrj)(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks, newTsk.project);
-            
-            // console.log('after edit');
-            // console.log(allTasks);
+      (0,_dom__WEBPACK_IMPORTED_MODULE_0__.tskListByPrj)(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks, newTsk.project);
 
-            // save tasks to local storage
-            (0,_data__WEBPACK_IMPORTED_MODULE_1__.saveTolocalTsk)(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks);
+      // console.log('after edit');
+      // console.log(allTasks);
 
-        }
-    })
+      // save tasks to local storage
+      (0,_data__WEBPACK_IMPORTED_MODULE_1__.saveTolocalTsk)(_data__WEBPACK_IMPORTED_MODULE_1__.allTasks);
+    }
+  });
 
-    // show modal
-    inputModal.showModal();
-}
+  // show modal
+  inputModal.showModal();
+};
 
 const crtPrjForm = () => {
-        // create a new project
+  // create a new project
 
-        //modal - create dialog
-        const inputModal = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('dialog', 'dialog', '#content').crtNode();
-        inputModal.setAttribute('id', 'ipt-dialog');
-        // form    
-        const form = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('input-form', 'form', '.dialog').crtNode();
-        form.setAttribute('method', 'dialog');
-        // title
-        const labelTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('label', 'label', '.input-form', 'Title').crtNode();
-        labelTitle.setAttribute('for', 'title');
-        const inputTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('input', 'input', '.input-form').crtNode();
-        inputTitle.setAttribute('type', 'text');
-        inputTitle.setAttribute('name', 'title');
-        inputTitle.setAttribute('id', 'task-title');
-        inputTitle.required = true;
+  //modal - create dialog
+  const inputModal = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("dialog", "dialog", "#content").crtNode();
+  inputModal.setAttribute("id", "ipt-dialog");
+  // form
+  const form = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("input-form", "form", ".dialog").crtNode();
+  form.setAttribute("method", "dialog");
+  // title
+  const labelTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "label",
+    "label",
+    ".input-form",
+    "Title"
+  ).crtNode();
+  labelTitle.setAttribute("for", "title");
+  const inputTitle = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("input", "input", ".input-form").crtNode();
+  inputTitle.setAttribute("type", "text");
+  inputTitle.setAttribute("name", "title");
+  inputTitle.setAttribute("id", "task-title");
+  inputTitle.required = true;
 
-        // cancel button
-        const cancelBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('btn', 'button', '.input-form', 'Cancel').crtNode();
-        cancelBtn.addEventListener('click', () => {
-            // delete dialog
-            (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)('#ipt-dialog');
-            inputModal.close();
-        })
+  // cancel button
+  const cancelBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("btn", "button", ".input-form", "Cancel").crtNode();
+  cancelBtn.addEventListener("click", () => {
+    // delete dialog
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)("#ipt-dialog");
+    inputModal.close();
+  });
 
-        // confirm button
-        const confirmBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('btn', 'input', '.input-form', 'Confirm').crtNode();
-        confirmBtn.setAttribute('type', 'submit');
+  // confirm button
+  const confirmBtn = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "btn",
+    "input",
+    ".input-form",
+    "Confirm"
+  ).crtNode();
+  confirmBtn.setAttribute("type", "submit");
 
-            // get parent of the default tasks list heading in order to add new chevron 
-        // down icons
-        const defH1Con = document.querySelector('.def-h1-con');
-        const prjH1Con = document.querySelector('.prj-h1-con');
+  // get parent of the default tasks list heading in order to add new chevron
+  // down icons
+  const defH1Con = document.querySelector(".def-h1-con");
+  const prjH1Con = document.querySelector(".prj-h1-con");
 
-        confirmBtn.addEventListener('click', () => {
+  confirmBtn.addEventListener("click", () => {
+    // Form validation
+    if (inputTitle.value === "") {
+      return;
+    } else {
+      // console.log('allProjects')
+      // console.log(allProjects);
 
-            
-            // Form validation
-            if (inputTitle.value === '') {
-                return
-            } else {
+      // if validation is passed then create new project object
+      (0,_data__WEBPACK_IMPORTED_MODULE_1__.addPrjObj)(inputTitle.value);
+      (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)("#ipt-dialog");
+      (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)(".projects-tasks");
 
-                // console.log('allProjects')
-                // console.log(allProjects);
+      // create container for prjects
+      const defaultProjects = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+        "projects-tasks",
+        "div",
+        ".prj-nav-con"
+      ).crtNode();
+      // display tasks in sidebar
+      (0,_dom__WEBPACK_IMPORTED_MODULE_0__.projectsList)(_data__WEBPACK_IMPORTED_MODULE_1__.allProjects, ".projects-tasks");
+      // increase projects count -> next project can have a unique identifer
+      (0,_data__WEBPACK_IMPORTED_MODULE_1__.increasePrjsCount)();
+      console.log("prjsCount form");
+      console.log(_data__WEBPACK_IMPORTED_MODULE_1__.prjsCount);
 
+      // save to local storage
+      (0,_data__WEBPACK_IMPORTED_MODULE_1__.saveTolocalPrj)(_data__WEBPACK_IMPORTED_MODULE_1__.allProjects);
+    }
+  });
 
-                // if validation is passed then create new project object
-                (0,_data__WEBPACK_IMPORTED_MODULE_1__.addPrjObj)(inputTitle.value);
-                (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)('#ipt-dialog');
-                (0,_dom__WEBPACK_IMPORTED_MODULE_0__.dltNode)('.projects-tasks');
-
-                // create container for prjects 
-                const defaultProjects = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('projects-tasks', 'div', '.prj-nav-con').crtNode();
-                // display tasks in sidebar
-                (0,_dom__WEBPACK_IMPORTED_MODULE_0__.projectsList)(_data__WEBPACK_IMPORTED_MODULE_1__.allProjects, '.projects-tasks');
-                // increase projects count -> next project can have a unique identifer
-                (0,_data__WEBPACK_IMPORTED_MODULE_1__.increasePrjsCount)();
-                console.log('prjsCount form')
-                console.log(_data__WEBPACK_IMPORTED_MODULE_1__.prjsCount)
-
-                // save to local storage
-                ;(0,_data__WEBPACK_IMPORTED_MODULE_1__.saveTolocalPrj)(_data__WEBPACK_IMPORTED_MODULE_1__.allProjects);
-
-            }
-        })
-
-        inputModal.showModal();
-}
-
-
-
-
-
+  inputModal.showModal();
+};
 
 
 
@@ -1601,40 +1791,52 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const home = () => {
-    // this html gets created the first time the side is used
-    // its the default starting page
+  // this html gets created the first time the side is used
+  // its the default starting page
 
-    // --------------------- SIDEBAR --------------------------
-    // sidebar-container
-    const sideCon = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('sidebar-container', 'div', '#content').crtNode();
+  // --------------------- SIDEBAR --------------------------
+  // sidebar-container
+  const sideCon = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("sidebar-container", "div", "#content").crtNode();
 
-    // header container
-    const headerCon = 
-        (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('heading-container', 'div', '.sidebar-container').
-        crtNode();
-    // heading sidebar
-    const sidebarH1 = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)
-        ('heading-sidebar', 'h1', '.heading-container', "To Do's")
-        .crtNode();
+  // header container
+  const headerCon = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "heading-container",
+    "div",
+    ".sidebar-container"
+  ).crtNode();
+  // heading sidebar
+  const sidebarH1 = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "heading-sidebar",
+    "h1",
+    ".heading-container",
+    "To Do's"
+  ).crtNode();
 
-    // Projects nav con
-    const projectsCon = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('prj-nav-con', 'div', '.sidebar-container').crtNode();
+  // Projects nav con
+  const projectsCon = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "prj-nav-con",
+    "div",
+    ".sidebar-container"
+  ).crtNode();
 
+  // // personal -> all projects go into personal
+  // const persH1Con = NodeFac('pers-h1-con', 'div', '.prj-nav-con').crtNode();
+  // const persH1 = NodeFac('heading-personal', 'h1', '.pers-h1-con', 'Projects').crtNode();
+  // // create plus button for adding new tasks
+  // crtPlusBtnTsk(Plus, 'icon', 'icon-plus', persH1Con);
 
-    // // personal -> all projects go into personal
-    // const persH1Con = NodeFac('pers-h1-con', 'div', '.prj-nav-con').crtNode();    
-    // const persH1 = NodeFac('heading-personal', 'h1', '.pers-h1-con', 'Projects').crtNode();
-    // // create plus button for adding new tasks
-    // crtPlusBtnTsk(Plus, 'icon', 'icon-plus', persH1Con);
+  // projects
+  const prjH1Con = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)("prj-h1-con", "div", ".prj-nav-con").crtNode();
+  const projectH1 = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)(
+    "heading-project",
+    "h1",
+    ".prj-h1-con",
+    "Projects"
+  ).crtNode();
+  // create plus button for adding new projects
+  (0,_dom__WEBPACK_IMPORTED_MODULE_0__.crtPlusBtnPrj)(_images_plus_svg__WEBPACK_IMPORTED_MODULE_3__, "icon", "icon-plus", prjH1Con);
+};
 
-
-
-    // projects
-    const prjH1Con = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('prj-h1-con', 'div', '.prj-nav-con').crtNode();    
-    const projectH1 = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.NodeFac)('heading-project', 'h1', '.prj-h1-con', 'Projects').crtNode();
-    // create plus button for adding new projects
-    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.crtPlusBtnPrj)(_images_plus_svg__WEBPACK_IMPORTED_MODULE_3__, 'icon', 'icon-plus', prjH1Con);
-}
 
 
 
@@ -1853,4 +2055,4 @@ __webpack_require__.r(__webpack_exports__);
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle500e13e9291b672306b8.js.map
+//# sourceMappingURL=bundledd2e3f253fbef9ea0342.js.map
